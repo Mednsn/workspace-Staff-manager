@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="grid">
+    <section class="bg-blue-200 flex p-6 ">
+        <div class="w-full max-lg:920 grid gap-4 lg:grid-cols-4">
+            <div id="contenaire-1" class="flex rounded-xl  w-full bg-white p-5 flex-col gap-2">
+                <h2 class="font-serif">Unassigned Staff</h2>
+                <button id="btn-add-staffs" class="bg-green-600 w-full p-1  rounded-md text-white text-sm">+ Add New
+                    Worker</button>
+
+                <div class="bg-gray-200 w-full p-1  rounded-md">
+                    <i class="fa-solid fa-filter fa-lg" style="color: #333a46;"></i>
+                    <select name="" id="" class="">
+                        <option value="">All Roles</option>
+                        <option value="">Receptioniste</option>
+                        <option value="">IT Technician</option>
+                        <option value="">Security Guard</option>
+                        <option value="">Manager</option>
+                        <option value="">Cleaning Staff</option>
+
+                    </select>
+                </div>
+                <!-- ::::::::::::::::::card des staff  -->
+                <div id="card-staff-unassigned" class="flex flex-col w-full">
+                    <!-- contenue des unassigned stafffffff -->
+
+
+                    <div id="info-profile" class="flex gap-2 border-2 rounded-xl border-gray-300 p-1">
+                        <div id="imag-staff-unassined" class="rounded-[50%] bg-gray-300 h-14 w-14"></div>
+                        <div class="grid">
+                            <strong>name fullname</strong>
+                            <small>speciality</small>
+                        </div>
+                    </div>
+                    <!-- contenue des unassigned stafffffffffff -->
+                </div>
+
+            </div>
+            <!-- ::::::::::::::::::::::::::::start couche 2 -->
+            <div id="contenaire-2" class="flex rounded-xl  w-full bg-white p-5 flex-col gap-2 lg:col-span-3">
+                <h2 class="font-serif ">Floor Plan</h2>
+                <div id="card-zones" class="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
+                    <div class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                        <div class="flex justify-between">
+                            <div>
+                                <h3 class="font-bold">Conference Room</h3>
+                                <span class="text-sm mb-3 ml-5">maximame 10 people</span>
+                            </div>
+                            <button id="btn-plus-conference" class="rourounded-md bg-orange-400 h-8 w-8 "><i
+                                    class="fa-solid fa-plus fa-lg" style="color: #335c36;"></i></button>
+                        </div>
+                        <div id="zone1-ajoutant-people" class="grid ">
+                            <!-- contenue des assigned staff -->
+
+
+                            <div class="flex justify-between items-center p-1 border-2 mt-2 border-gray-400 rounded-xl">
+                                <div class="flex gap-2">
+                                    <div id="imag-staff-unassined" class="rounded-[50%] bg-gray-300 h-14 w-14"></div>
+                                    <div class="grid">
+                                        <strong>name fullname</strong>
+                                        <small>speciality</small>
+                                    </div>
+                                </div>
+                                <button class="rounded-[50%] bg-red-500 h-8 w-8 "><i class="fa-solid fa-x"></i></button>
+
+                            </div>
+
+                            <!-- contenue des assigned staff -->
+                        </div>
+                    </div>
+                    <div class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                        <div class="flex justify-between">
+                            <div>
+                                <h3 class="font-bold">Reception</h3>
+                                <span class="text-sm mb-3 ml-5">maximame 2 people</span>
+                            </div>
+                            <button class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                                    style="color: #335c36;"></i></button>
+                        </div>
+                        <div id="zone2-ajoutant-people">
+                            <!-- contenue des assigned staff -->
+
+                            <div
+                                class="h-30 mt-3 text-sm w-full flex justify-center items-center border-2 border-dashed rounded-xl ">
+                                No employees assigned</div>
+
+
+                            <!-- contenue des assigned staff -->
+                        </div>
+                    </div>
+                    <div class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                        <div class="flex justify-between">
+                            <div>
+                                <h3 class="font-bold">Server Room</h3>
+                                <span class="text-sm mb-3 ml-5">maximame 3 people</span>
+                            </div>
+                            <button class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                                    style="color: #335c36;"></i></button>
+                        </div>
+                        <div id="zone3-ajoutant-people">
+                            <!-- contenue des assigned staff -->
+
+                            <div
+                                class="h-30 mt-3 text-sm w-full flex justify-center items-center border-2 border-dashed rounded-xl ">
+                                No employees assigned</div>
+
+
+                            <!-- contenue des assigned staff -->
+                        </div>
+                    </div>
+                    <div class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                        <div class="flex justify-between">
+                            <div>
+                                <h3 class="font-bold">Security Room</h3>
+                                <span class="text-sm mb-3 ml-5">maximame 2 people</span>
+                            </div>
+                            <button class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                                    style="color: #335c36;"></i></button>
+                        </div>
+                        <div id="zone4-ajoutant-people">
+                            <!-- contenue des assigned staff -->
+
+
+                            <div
+                                class="h-30 mt-3 text-sm w-full flex justify-center items-center border-2 border-dashed rounded-xl ">
+                                No employees assigned</div>
+
+                            <!-- contenue des assigned staff -->
+                        </div>
+                    </div>
+                    <div class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                        <div class="flex justify-between">
+                            <div>
+                                <h3 class="font-bold">Staff Room</h3>
+                                <span class="text-sm mb-3 ml-5">maximame 15 people</span>
+                            </div>
+                            <button class="rounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                                    style="color: #335c36;"></i></button>
+                        </div>
+                        <div id="zone5-ajoutant-people">
+                            <!-- contenue des assigned staff -->
+
+                            <div
+                                class="h-30 mt-3 text-sm w-full flex justify-center items-center border-2 border-dashed rounded-xl ">
+                                No employees assigned</div>
+
+
+                            <!-- contenue des assigned staff -->
+                        </div>
+                    </div>
+                    <div class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                        <div class="flex justify-between">
+                            <div>
+                                <h3 class="font-bold">Archives Room</h3>
+                                <span class="text-sm mb-3 ml-5">maximame 3 people</span>
+                            </div>
+                            <button class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                                    style="color: #335c36;"></i></button>
+                        </div>
+                        <div id="zone6-ajoutant-people">
+                            <!-- contenue des assigned staff -->
+
+                            <div
+                                class="h-30 mt-3 text-sm w-full flex justify-center items-center border-2 border-dashed rounded-xl ">
+                                No employees assigned</div>
+
+
+                            <!-- contenue des assigned staff -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <<<<<<<<<<<<<<<<<<<<<<<<< modale1 formulaire >>>>>>>>>>>>>>>>>>>>>>>>> -->
+    <section id="modale-formulaire"
+        class="fixed z-10 w-full  backdrop-blur-[2px] bg-black/45 flex justify-center h-screen items-center">
+        <div class="flex flex-col overflow-auto justify-center items-center p-6 w-100 border shadow-slate-950 rounded-md bg-white">
+            <div>
+                <h3 class="font-black">Add New Worker</h3>
+            </div>
+            <div class="grid w-full border-t ">
+
+                <form action="" id="form" name="ajouter" class=" flex w-full flex-col gap-">
+                    <div class="mt-2 flex bg-slate-100 w-full rounded-lg justify-center">
+                        <div id="iimg-staff" class="rounded-lg  bg-cover h-20 w-20 ">
+                            <!-- img de staff -->
+                        </div>
+                    </div>
+                    <div class="grid ">
+                        <label for="">Photo (URL):</label>
+                        <input type="text" id="urlphoto" class="bg-gray-200 h-7 border rounded-sm ">
+                    </div>
+                    <div class="grid ">
+                        <label for="">Nom :</label>
+                        <input type="text" id="nomworker" class="bg-gray-200 h-7 border rounded-sm ">
+                    </div>
+                    <div class="grid ">
+                        <label for="">Prenom :</label>
+                        <input type="text" id="prenomworker" class="bg-gray-200 h-7 border rounded-sm ">
+                    </div>
+                    <div class="grid ">
+                        <label for="">Email :</label>
+                        <input id="emailworker" type="text" class="bg-gray-200 h-7 border rounded-sm ">
+                    </div>
+                    <div class="grid ">
+                        <label for="">Telefone :</label>
+                        <input type="text" id="teleworker" class="bg-gray-200 h-7 border rounded-sm ">
+                    </div>
+                    <div>
+                        <div class="flex justify-between">
+                            <label for="">Expériences :</label>
+                            <button id="ajouter-exp" class="rounded-md bg-green-600 h-7 mt-2 w-16 text-white">Ajouter</button>
+                        </div>
+                        <div id="pluus-experiences" class="grid gap-2 p-3 bg-blue-100 rounded-md mt-3 border-b-1">
+                           
+                            <!-- ajoute des experience  -->
+
+
+                            <!-- <div class="grid experience-count gap-2 bg-white border p-2 rounded-md mt-3">
+                                <div class="grid ">
+                                    <label for="">nom :</label>
+                                    <input type="text" id="nameexper" class="bg-gray-200 h-7 border rounded-sm ">
+                                </div>
+                                <div class="grid ">
+                                    <label for="">role:</label>
+                                    <input type="text" id="roles" class="bg-gray-200 h-7 border rounded-sm ">
+                                </div>
+                            </div> -->
+
+                        </div>
+                    </div>
+                    <button type="submit" class="rounded-md mt-1 bg-green-600 p-1 text-white">Add worker</button>
+                </form>
+                <button id="annuler-formulaire"
+                    class="rounded-md mt-1 border p-1 hover:text-white hover:bg-red-600">Annuler</button>
+
+            </div>
+        </div>
+    </section>
+    <!-- <<<<<<<<<<<<<<<<<<<<<<<<< modale2 profiles detaile>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+    <section id="modale-profile"
+        class="fixed z-10 w-full flex backdrop-blur-[2px] bg-black/45  justify-center h-screen items-center">
+        <div class="flex flex-col justify-center  items-center p-6 w-100 border rounded-md bg-white">
+            <div class="flex justify-between  w-full">
+                <h3 class="font-black">Staff Profile</h3>
+                <button id="btn-profile-X"><i class="fa-solid fa-x"></i></button>
+            </div>
+            <div class="grid gap-2 w-full border-t ">
+                <div class="grid justify-center items-center gap-2">
+                    <div class="rounded-[50%] bg-cover bg-pink-500 w-24 h-24"></div>
+                    <div class="grid">
+                        <h2>Sarah Johnson</h2>
+                        <span>Receptionist</span>
+                    </div>
+                </div>
+                <div class="grid gap-1">
+                    <h3><i class="fa-regular fa-envelope" style="color: #4d74d7;"></i>sarah.johnson@company.com</h3>
+                    <h3><i class="fa-solid fa-phone" style="color: #16871e;"></i>+33 6 12 34 56 78</h3>
+                    <h3><i class="fa-solid fa-location-pin fa-lg" style="color: #f83062;"></i>Unassigned</h3>
+                </div>
+
+                <div class="grid gap-1">
+
+                    <div>
+                        <h2>Work Experience</h2>
+                    </div>
+                    <div class="grid gap-1">
+
+                        <!-- espace sajoute dans js  -->
+                        <div class="ml-5 border-l-3 border-t-3 border-gray-200">
+                            <div class="grid ml-3">
+                                <h3>Front Desk Coordinator</h3>
+                                <small>Tech Corp</small>
+                                <small>2020-2023</small>
+                            </div>
+                        </div>
+
+                        <!-- espace sajoute dans js  -->
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- <<<<<<<<<<<<<<<<<<<<<<<<< modale3 listes >>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+    <section id="modale-list"
+        class="fixed z-10 w-full flex bg-black/45  justify-center backdrop-blur-[2px] h-screen items-center">
+        <div class="flex flex-col border justify-center items-center p-6 w-100 rounded-md bg-white">
+            <div class="flex justify-between w-full">
+                <h3 class="font-black">assigne to Conference</h3>
+                <button id="btn-list-X"><i class="fa-solid fa-x"></i></button>
+
+            </div>
+            <div class="grid gap-2  w-full border-t ">
+
+                <!-- space s'ajoute en js  -->
+                <div class="flex gap-2 border-2 mt-3 rounded-xl border-gray-300 p-1">
+                    <div id="imag-staff-unassined" class="rounded-[50%] bg-gray-300 h-14 w-14"></div>
+                    <div class="grid">
+                        <strong>name fullname</strong>
+                        <small>speciality</small>
+                    </div>
+                </div>
+
+                <!-- space s'ajoute en js  -->
+
+            </div>
+        </div>
+    </section>
+    <script src="main.js"></script>
+</body>
+
+</html>
