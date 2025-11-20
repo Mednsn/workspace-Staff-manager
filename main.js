@@ -1,5 +1,6 @@
-// ::::::::::::::::::: appel modal1::::::::::::::::::
-document.getElementById("annuler-formulaire").addEventListener("click", function () {
+
+document.getElementById("annuler-formulaire").addEventListener("click", resetForme);
+function resetForme(){
     document.forms["ajouter"].reset();
     let intp = document.querySelectorAll('input');
     intp.forEach(inpt => {
@@ -8,12 +9,10 @@ document.getElementById("annuler-formulaire").addEventListener("click", function
     )
     photos.style.backgroundImage = `url('')`;
 
-})
+};
 
-// :::::::::::::::: appel modal 3::::::::::::::
 
-let form = document.getElementById("form");
-form.addEventListener("submit", validationForm);
+
 let urlpicture = document.getElementById("urlphoto");
 let photos = document.getElementById("iimg-staff");
 urlpicture.addEventListener("input", function () {
@@ -36,8 +35,12 @@ btnAjouterEX.addEventListener("click",function(){
 })
 
 // ::::::::::::::::: validation formulaire ::::::::::::::
+// let form = document.getElementById("form");
+document.forms["ajouter"].addEventListener("submit", validationForm);
 
 function validationForm(e) {
+    
+
     e.preventDefault();
     let nom = document.getElementById("nomworker");
     let role = document.getElementById("roleworker");
@@ -48,113 +51,152 @@ function validationForm(e) {
 
     let urlregex = /https?:\/\/[a-z^\s]+/;
     if (urlpicture.value == "") {
-        urlpicture.style.background = "Coral"
+        urlpicture.style.borderColor = "red"
         return
     } else {
         if (!urlregex.test(urlpicture.value)) {
-            urlpicture.style.background = "Coral";
+            urlpicture.style.borderColor = "red";
             return;
-        } else {
-            urlpicture.style.background = "LightGreen";
-        }
-    }
+        } else {urlpicture.style.borderColor = "green";}
+    } 
     let nameregex = /^[a-zA-Z\s?]+$/;
     if (nom.value == "") {
-        nom.style.background = "Coral";
+        nom.style.borderColor = "red";
         return;
     } else {
         if (!nameregex.test(nom.value)) {
-            nom.style.background = "Coral";
+            nom.style.borderColor = "red";
             return;
         } else {
-            nom.style.background = "LightGreen";
-        }
-    }
+            nom.style.borderColor = "green";
+    }};
+
     if (role.value == "") {
-        role.style.background = "Coral";
+        role.style.borderColor = "red";
         return;
     } else {
         if (!nameregex.test(role.value)) {
-            role.style.background = "Coral";
+            role.style.borderColor = "red";
             return;
         } else {
-            role.style.background = "LightGreen";
-        }
-    }
+            role.style.borderColor = "green";
+        } };
     let emilregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emil.value == "") {
-        emil.style.background = "Coral";
+        emil.style.borderColor = "red";
         return;
     } else {
         if (!emilregex.test(emil.value)) {
-            emil.style.background = "Coral";
+            emil.style.borderColor = "red";
             return;
         } else {
-            emil.style.background = "LightGreen";
-        }
-    }
+            emil.style.borderColor = "green";
+     }};
     let phoneregex = /^\d+$/;
     if (telephon.value == "") {
-        telephon.style.background = "Coral";
+        telephon.style.borderColor = "red";
         return;
     } else {
         if (!phoneregex.test(telephon.value)) {
-            telephon.style.background = "Coral";
+            telephon.style.borderColor = "red";
             return;
         } else {
-            telephon.style.background = "LightGreen";
+            telephon.style.borderColor = "green";
+    }};
+    let staff = {
+        urlphotos: urlpicture.value,
+        firstname: nom.value,
+        role: role.value,
+        emilstaff: emil.value,
+        telephone: telephon.value,
+        experiencetab: []
         }
-    };
-    let staff ={};
-
     expercount.forEach(exper => {
         let nameexp = document.getElementById("nameexper");
         let rolexp = document.getElementById("roles");
 
         if (nameexp.value == "") {
-            nameexp.style.background = "Coral";
+            nameexp.style.borderColor = "red";
             return;
         } else {
             if (!nameregex.test(nameexp.value)) {
-                nameexp.style.background = "Coral";
+                nameexp.style.borderColor = "red";
                 return;
             } else {
-                nameexp.style.background = "LightGreen";
+                nameexp.style.borderColor = "green";
             }
         };
 
         if (rolexp.value == "") {
-            rolexp.style.background = "Coral";
+            rolexp.style.borderColor = "red";
             return;
         } else {
             if (!nameregex.test(rolexp.value)) {
-                rolexp.style.background = "Coral";
+                rolexp.style.borderColor = "red";
                 return;
-            } else { rolexp.style.background = "LightGreen"; }
+            } else { rolexp.style.borderColor = "green"; }
         };
-         staff = {
-        urlphotos: urlpicture.value,
-        firstname: nom.value,
-        lastname: role.value,
-        emilstaff: emil.value,
-        telephone: telephon.value,
-        experiencetab: []
-    }
-    staff.experiencetab.push(
-            {
+         
+    
+    
+            let expobj={
                 nameExp: exper.nameexp,
                 roleExp: exper.rolexp
-            }
-        );
+            };
+            staff.experiencetab(expobj)
     })
-
-    
-    console.log(111111111111);
-    setLocatleStorege(staff);
+   
+     saveStaffList(staff);
+   resetForme();
 }
 
-function setLocatleStorege(staff) {
-    let listUnassigned=[];
-    listUnassigned.push(staff);
+
+let listUnassigned=[];
+function saveStaffList(staff){
+   
+     listUnassigned.push(staff);
+     
+     setLocatleStorege(listUnassigned);
+     
+}
+
+
+
+function setLocatleStorege(listUnassigned) {
+   
     localStorage.setItem('infolistunassigned',JSON.stringify(listUnassigned));
+    
 }
+checkLocaleStorege();
+
+
+function checkLocaleStorege(){  
+    let listUnassigneds=JSON.parse(localStorage.getItem('infolistunassigned'));
+    
+       affichageunassigned(listUnassigneds);
+
+}
+
+
+
+ function affichageunassigned(membres){
+    console.log(membres);
+
+    let cardUnassigned=document.getElementById("card-staff-unassigned");
+   membres.forEach((elemt,index)=>{
+     cardUnassigned.innerHTML+=`<button onclick="afficheProfile(${index})" command="show-modal" commandfor="dialog-profile">
+                        <div id="info-profile" class="flex gap-2 border-2 rounded-xl border-gray-300 p-1">
+                            <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
+                            <div class="grid">
+                                <strong>${elemt.firstname}</strong>
+                                <small>${elemt.role}</small>
+                            </div>
+                        </div>
+                    </button>`
+  } )
+ }
+
+//  function afficheProfile(index){
+    
+    
+//     }
