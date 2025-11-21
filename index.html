@@ -35,7 +35,7 @@
                 <div id="card-staff-unassigned" class="flex gap-1 flex-col w-full">
                     <!-- contenue des unassigned stafffffff -->
 
-                    
+
                     <!-- contenue des unassigned stafffffffffff -->
                 </div>
 
@@ -50,8 +50,9 @@
                                 <h3 class="font-bold">Conference Room</h3>
                                 <span class="text-sm mb-3 ml-5">maximame 10 people</span>
                             </div>
-                            <button command="show-modal" commandfor="dialog-list"  id="btn-plus-conference" class="rourounded-md bg-orange-400 h-8 w-8 "><i
-                                    class="fa-solid fa-plus fa-lg" style="color: #335c36;"></i></button>
+                            <button command="show-modal" commandfor="dialog-list" id="btn-plus-conference"
+                                class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                                    style="color: #335c36;"></i></button>
                         </div>
                         <div id="zone1-ajoutant-people" class="grid ">
                             <!-- contenue des assigned staff -->
@@ -205,23 +206,27 @@
                                 </div>
                                 <div class="grid ">
                                     <label for="urlphoto">Photo (URL):</label>
-                                    <input type="text" id="urlphoto" class="bg-gray-200 h-7 border-2 rounded-sm " >
+                                    <input type="text" id="urlphoto" class="bg-gray-200 h-7 border-2 rounded-sm ">
                                 </div>
                                 <div class="grid ">
                                     <label for="nomworker">Nom :</label>
-                                    <input type="text" id="nomworker" name="nomworker" class="bg-gray-200 h-7 border-2 rounded-sm ">
+                                    <input type="text" id="nomworker" name="nomworker"
+                                        class="bg-gray-200 h-7 border-2 rounded-sm ">
                                 </div>
                                 <div class="grid ">
                                     <label for="roleworker">Role :</label>
-                                    <input type="text" id="roleworker" name="roleworker" class="bg-gray-200 h-7 border-2 rounded-sm " >
+                                    <input type="text" id="roleworker" name="roleworker"
+                                        class="bg-gray-200 h-7 border-2 rounded-sm ">
                                 </div>
                                 <div class="grid ">
                                     <label for="emailworker">Email :</label>
-                                    <input id="emailworker" name="emailworker" type="text" class="bg-gray-200 h-7 border-2 rounded-sm " >
+                                    <input id="emailworker" name="emailworker" type="text"
+                                        class="bg-gray-200 h-7 border-2 rounded-sm ">
                                 </div>
                                 <div class="grid ">
                                     <label for="teleworker">Telefone :</label>
-                                    <input type="text" id="teleworker" name="teleworker" class="bg-gray-200 h-7 border-2 rounded-sm " >
+                                    <input type="text" id="teleworker" name="teleworker"
+                                        class="bg-gray-200 h-7 border-2 rounded-sm ">
                                 </div>
                                 <div>
                                     <div class="flex justify-between">
@@ -250,54 +255,59 @@
 
     <!-- <<<<<<<<<<<<<<<<<<<<<<<<< modale2 profiles detaile>>>>>>>>>>>>>>>>>>>>>>>>> -->
 
- <section id="dialog-profile" class="absolute bg-black/45 backdrop-blur-sm h-300 flex w-full flex-col items-center justify-start ">
+    <section id="dialog-profile"
+        class="hidden absolute bg-black/45 backdrop-blur-sm h-300  w-full flex-col items-center justify-start ">
         <div class=" flex justify-center rounded-md mt-20  p-8">
-           <div class="flex flex-col justify-center  items-center p-6 w-110 border rounded-md bg-white">
-                        <div class="flex justify-between  w-full">
-                            <h3 class="font-black">Staff Profile</h3>
-                            <button  id="btn-profile-X"><i
-                                    class="fa-solid fa-x"></i></button>
-                        </div>
-                     <div class="grid gap-2 w-full border-t ">
-                            <div class="grid justify-center items-center gap-2">
-                                <div id="id-imagprofile" class="rounded-[50%] bg-cover  w-24 h-24"></div>
-                                <div class="grid">
-                                    <h2 id="name-profile"></h2>
-                                    <span id="speciality-profile"></span>
-                                </div>
-                            </div>
-                            <div class="grid gap-1">
-                                <div class="flex items-center"><i class="fa-regular fa-envelope"
-                                        style="color: #4d74d7;"></i><h3 id="email-profile"></h3></div>
-                                <div class="flex items-center"><i class="fa-solid fa-phone" style="color: #16871e;"></i>+<h3 id="mumder-profile"></h3></div>
-                                <div class="flex items-center"><i class="fa-solid fa-location-pin fa-lg" style="color: #f83062;"></i>Unassigned
-                                </div>
-                            </div>
-
-                            <div class="grid gap-1">
-
-                                <div>
-                                    <h2>Work Experience</h2>
-                                </div>
-                                <div id="add-more-exper" class="grid gap-1">
-
-                                  
-                                    <div class="ml-5 border-l-3 border-t-3 border-gray-200">
-                                        <div class="grid ml-3">
-                                            <h3>Front Desk Coordinator</h3>
-                                            <small>Tech Corp</small>
-                                            
-                                        </div>
-                                    </div>
-
-                                   
-
-                                </div>
-
-                            </div>
-
+            <div class="flex flex-col  p-6 w-110 border rounded-md bg-white">
+                <div class="flex justify-between  w-full">
+                    <h3 class="font-black">Staff Profile</h3>
+                    <button id="btn-profile-X"><i class="fa-solid fa-x"></i></button>
+                </div>
+                <div id="contenaire-infospro"></div>
+                <!-- <div class="grid gap-2 w-full border-t ">
+                    <div class="grid justify-center items-center gap-2">
+                        <div id="id-imagprofile" class="rounded-[50%] bg-cover bg-slate-500  w-24 h-24"></div>
+                        <div class="grid">
+                            <h2 id="name-profile">dfghj jkhjk</h2>
+                            <span id="speciality-profile">speciality</span>
                         </div>
                     </div>
+                    <div class="grid gap-1">
+                        <div class="flex items-center"><i class="fa-regular fa-envelope" style="color: #4d74d7;"></i>
+                            <h3 id="email-profile"></h3>
+                        </div>
+                        <div class="flex items-center"><i class="fa-solid fa-phone" style="color: #16871e;"></i>+<h3
+                                id="mumder-profile"></h3>
+                        </div>
+                        <div class="flex items-center"><i class="fa-solid fa-location-pin fa-lg"
+                                style="color: #f83062;"></i>Unassigned
+                        </div>
+                    </div>
+
+                    <div class="grid gap-1">
+
+                        <div>
+                            <h2>Work Experience</h2>
+                        </div>
+                        <div id="add-more-exper" class="grid gap-1">
+
+
+                            <div class="ml-5 border-l-3 border-t-3 border-gray-200">
+                                <div class="grid ml-3">
+                                    <h3>Front Desk Coordinator</h3>
+                                    <small>Tech Corp</small>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div> -->
+            </div>
     </section>
 
 
@@ -309,7 +319,7 @@
 
 
     <!-- <<<<<<<<<<<<<<<<<<<<<<<<< modale3 listes >>>>>>>>>>>>>>>>>>>>>>>>> -->
-    
+
     <el-dialog>
         <dialog id="dialog-list" aria-labelledby="dialog-title"
             class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
@@ -325,7 +335,8 @@
                     <div class="flex flex-col border justify-center items-center p-6 w-full rounded-md bg-white">
                         <div class="flex justify-between w-full">
                             <h3 class="font-black">assigne to Conference</h3>
-                            <button command="close" commandfor="dialog-list" id="btn-list-X"><i class="fa-solid fa-x"></i></button>
+                            <button command="close" commandfor="dialog-list" id="btn-list-X"><i
+                                    class="fa-solid fa-x"></i></button>
 
                         </div>
                         <div class="grid gap-2  w-full border-t ">

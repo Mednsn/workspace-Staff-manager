@@ -28,11 +28,11 @@ btnAjouterEX.addEventListener("click", function () {
     let cardExperience = `<div class="grid experience-count gap-2 bg-white border p-2 rounded-md mt-3">
                                 <div class="grid ">
                                     <label for="">nom :</label>
-                                    <input type="text" name="skillsname" id="skillsname" class="bg-gray-200 h-7 border rounded-sm ">
+                                    <input type="text" name="skillsname" id="skillsname" class="bg-gray-200 h-7 border rounded-sm skillsname">
                                 </div>
                                 <div class="grid ">
                                     <label for="">role:</label>
-                                    <input type="text" id="skiilsrole" name="skiilsrole" class="bg-gray-200 h-7 border rounded-sm ">
+                                    <input type="text" id="skiilsrole" name="skiilsrole" class="bg-gray-200 h-7 border rounded-sm skiilsrole">
                                 </div>
                             </div>`;
     spaceEX.insertAdjacentHTML('beforeend', cardExperience)
@@ -54,19 +54,20 @@ document.forms["ajouter"].addEventListener("submit", (event) => {
         urlphotos: form.urlphoto.value,
         firstname: form.nomworker.value,
         role: form.roleworker.value,
-        emilstaff: form.emailworker.value,
+        emailStaff: form.emailworker.value,
         telephone: form.teleworker.value,
         experiencetab: []
     }
-
-
-    for (let i = 0; i < form.skillsname.length; i++) {
+     
+    let skillsname = document.querySelectorAll('.skillsname')
+    let skiilsrole = document.querySelectorAll('.skiilsrole')
+    for (let i = 0; i < skillsname.length; i++) {
         staff.experiencetab.push({
-            name: form.skillsname[i].value,
-            role: form.skiilsrole[i].value
+            name: skillsname[i].value,
+            role: skiilsrole[i].value
         })
     }
-    console.log(22222222);
+
 
 
 
@@ -94,10 +95,10 @@ function setLocatleStorege(listUnassigned) {
 
 function checkLocaleStorege() {
     let listUnassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-    if(listUnassigneds!=null){
-         affichageunassigned(listUnassigneds);
+    if (listUnassigneds != null) {
+        affichageunassigned(listUnassigneds);
     }
-   
+
 }
 checkLocaleStorege();
 
@@ -166,9 +167,11 @@ function affichageunassigned(membres) {
     let cardUnassigned = document.getElementById("card-staff-unassigned");
     cardUnassigned.innerHTML = ""
     mombers.forEach(elemt => {
+        // console.log(elemt.emailStaff);
+        
         cardUnassigned.innerHTML += ` <div id="info-profile" class=" border-2 rounded-xl border-gray-300 p-1">
-                                           <div emil="${elemt.emilstaff}" class="flex justify-between " >
-                                             <div class="flex showProfile">
+                                           <div class="flex justify-between " >
+                                             <div email="${elemt.emailStaff}"  class="flex showProfile">
                                                   <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
                                                   <div class="grid">
                                                       <strong>${elemt.firstname}</strong>
@@ -180,60 +183,88 @@ function affichageunassigned(membres) {
                             
                                          </div>`
     })
-   
-}
-let modalProfile=document.getElementById("dialog-profile");
-modalProfile.style.display="none";
 
-// document.getElementById("showProfile").addEventListener("click",()=>{
-// modalProfile.style.display="block";
-// })
-document.getElementById("btn-profile-X").addEventListener("click",()=>{
-modalProfile.classList.remove("flex");
+}
+let modalProfile = document.getElementById("dialog-profile");
+
+document.getElementById("btn-profile-X").addEventListener("click", () => {
+    modalProfile.classList.replace("block", "hidden");
+
 
 })
- eventbtn()
-function eventbtn(){
-            
+eventbtn()
+function eventbtn() {
 
-    let allbtn=document.getElementsByClassName(".showProfile");
-allbtn.forEach(element=>{
 
-    element.addEventListener("click", (event) => {
-        
-        console.log("event applique");
-        
-    detaillProfile(event.target.getAttribute("email"));
-    modalProfile.classList.add("flex");
-})})
+    let allbtn = document.querySelectorAll(".showProfile");
+    allbtn.forEach(element => {
+
+        element.addEventListener("click", (event) => {
+            // console.log(event.target);
+            detaillProfile(event.target.getAttribute("email"));
+
+            modalProfile.classList.replace("hidden", "block");
+        })
+    })
 }
 
 
 function detaillProfile(email) {
-    console.log(11111111);
-
     let listUnassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-    let addmoreexper= document.getElementById("add-more-exper");
-    let staffs = listUnassigneds.find(s => s.emilstaff == email);
+    let addinfos = document.getElementById("contenaire-infospro");
+    let staff = listUnassigneds.find(s => s.emailStaff === email);
+   
+    
+    addinfos.innerHTML = `<div class="grid gap-2 w-full border-t ">
+                    <div class="grid justify-center items-center gap-2">
+                        <div id="id-imagprofile" class="rounded-[50%] bg-cover bg-[url(${staff.urlphotos})]  w-24 h-24"></div>
+                        <div class="grid">
+                            <h2 id="name-profile">${staff.firstname}</h2>
+                            <span id="speciality-profile">${staff.role}</span>
+                        </div>
+                    </div>
+                    <div class="grid gap-1">
+                        <div class="flex items-center"><i class="fa-regular fa-envelope" style="color: #4d74d7;">${staff.emailStaff}</i>
+                            <h3 id="email-profile"></h3>
+                        </div>
+                        <div class="flex items-center"><i class="fa-solid fa-phone" style="color: #16871e;"></i>+${staff.telephone}<h3
+                                id="mumder-profile"></h3>
+                        </div>
+                        <div class="flex items-center"><i class="fa-solid fa-location-pin fa-lg"
+                                style="color: #f83062;"></i>Unassigned
+                        </div>
+                    </div>
 
-    document.getElementById("id-imagprofile").style.backgroundImage=`url(${staffs.urlphotos})`;
-    document.getElementById("email-profile").textContent="rtrhrt";
-    document.getElementById("mumder-profile").textContent="trhhhtht";
-    if(staffs.experiencetab.skillsname!=0){
-        staffs.experiencetab.forEach(skils=>{
+                    <div class="grid gap-1">
 
-            addmoreexper.innerHTML+=` <div class="ml-5 border-l-3 border-t-3 border-gray-200">
-                                        <div class="grid ml-3">
-                                            <h3>${skils.name}</h3>
-                                            <small>${skils.role}</small> 
-                                        </div>
-                                    </div>`
- 
-        })
-     }     
+                        <div>
+                            <h2>Work Experience</h2>
+                        </div>
+                        <div id="add-more-exper" class="grid gap-1">
+                             ${cardexper(staff)}
+                        </div>
 
+                    </div>
+
+                </div>`
+  console.log(staff.experiencetab);
+  
 }
+function cardexper(staffs) {
+console.log(staffs.experiencetab.length);
+   let card;
+    if (staffs.experiencetab.length != 0) {
+        for (let i = 0; i < staffs.experiencetab.length; i++) {
+            card+=` <div class="ml-5 border-l-3 border-t-3 border-gray-200">
+                                <div class="grid ml-3">
+                                    <h3>${staffs.experiencetab[i].name}</h3>
+                                    <small>${staffs.experiencetab[i].role}</small>
 
+                                </div>
+                            </div>`
+        }
+    }return card;
+}
 
 
 
