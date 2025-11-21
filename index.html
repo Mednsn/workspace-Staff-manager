@@ -205,23 +205,23 @@
                                 </div>
                                 <div class="grid ">
                                     <label for="urlphoto">Photo (URL):</label>
-                                    <input type="text" id="urlphoto" class="bg-gray-200 h-7 border rounded-sm " >
+                                    <input type="text" id="urlphoto" class="bg-gray-200 h-7 border-2 rounded-sm " >
                                 </div>
                                 <div class="grid ">
                                     <label for="nomworker">Nom :</label>
-                                    <input type="text" id="nomworker" name="nomworker" class="bg-gray-200 h-7 border rounded-sm ">
+                                    <input type="text" id="nomworker" name="nomworker" class="bg-gray-200 h-7 border-2 rounded-sm ">
                                 </div>
                                 <div class="grid ">
                                     <label for="roleworker">Role :</label>
-                                    <input type="text" id="roleworker" name="roleworker" class="bg-gray-200 h-7 border rounded-sm " >
+                                    <input type="text" id="roleworker" name="roleworker" class="bg-gray-200 h-7 border-2 rounded-sm " >
                                 </div>
                                 <div class="grid ">
                                     <label for="emailworker">Email :</label>
-                                    <input id="emailworker" name="emailworker" type="text" class="bg-gray-200 h-7 border rounded-sm " >
+                                    <input id="emailworker" name="emailworker" type="text" class="bg-gray-200 h-7 border-2 rounded-sm " >
                                 </div>
                                 <div class="grid ">
                                     <label for="teleworker">Telefone :</label>
-                                    <input type="text" id="teleworker" name="teleworker" class="bg-gray-200 h-7 border rounded-sm " >
+                                    <input type="text" id="teleworker" name="teleworker" class="bg-gray-200 h-7 border-2 rounded-sm " >
                                 </div>
                                 <div>
                                     <div class="flex justify-between">
@@ -258,28 +258,28 @@
 
             <div tabindex="0"
                 class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
-                <el-dialog-panel
+                <el-dialog-panel id="dialog-profile-contenaire"
                     class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
-                    <div class="flex flex-col justify-center  items-center p-6 w-full border rounded-md bg-white">
+                     <div class="flex flex-col justify-center  items-center p-6 w-full border rounded-md bg-white">
                         <div class="flex justify-between  w-full">
                             <h3 class="font-black">Staff Profile</h3>
                             <button command="close" commandfor="dialog-profile" id="btn-profile-X"><i
                                     class="fa-solid fa-x"></i></button>
                         </div>
-                        <div class="grid gap-2 w-full border-t ">
+                     <div class="grid gap-2 w-full border-t ">
                             <div class="grid justify-center items-center gap-2">
-                                <div class="rounded-[50%] bg-cover bg-pink-500 w-24 h-24"></div>
+                                <div id="id-imagprofile" class="rounded-[50%] bg-cover  w-24 h-24"></div>
                                 <div class="grid">
-                                    <h2>Sarah Johnson</h2>
-                                    <span>Receptionist</span>
+                                    <h2 id="name-profile">Sarah Johnson</h2>
+                                    <span id="speciality-profile">Receptionist</span>
                                 </div>
                             </div>
                             <div class="grid gap-1">
-                                <h3><i class="fa-regular fa-envelope"
-                                        style="color: #4d74d7;"></i>sarah.johnson@company.com</h3>
-                                <h3><i class="fa-solid fa-phone" style="color: #16871e;"></i>+33 6 12 34 56 78</h3>
-                                <h3><i class="fa-solid fa-location-pin fa-lg" style="color: #f83062;"></i>Unassigned
-                                </h3>
+                                <div class="flex items-center"><i class="fa-regular fa-envelope"
+                                        style="color: #4d74d7;"></i><h3 id="email-profile"> sarah.johnson@company.com</h3></div>
+                                <div class="flex items-center"><i class="fa-solid fa-phone" style="color: #16871e;"></i>+<h3 id="mumder-profile">33 6 12 34 56 78</h3></div>
+                                <div class="flex items-center"><i class="fa-solid fa-location-pin fa-lg" style="color: #f83062;"></i>Unassigned
+                                </div>
                             </div>
 
                             <div class="grid gap-1">
@@ -289,7 +289,7 @@
                                 </div>
                                 <div class="grid gap-1">
 
-                                    <!-- espace sajoute dans js  -->
+                                  
                                     <div class="ml-5 border-l-3 border-t-3 border-gray-200">
                                         <div class="grid ml-3">
                                             <h3>Front Desk Coordinator</h3>
@@ -298,14 +298,14 @@
                                         </div>
                                     </div>
 
-                                    <!-- espace sajoute dans js  -->
+                                   
 
                                 </div>
 
                             </div>
 
                         </div>
-                    </div>
+                    </div> 
                 </el-dialog-panel>
             </div>
         </dialog>
