@@ -250,34 +250,26 @@
 
     <!-- <<<<<<<<<<<<<<<<<<<<<<<<< modale2 profiles detaile>>>>>>>>>>>>>>>>>>>>>>>>> -->
 
-    <el-dialog>
-        <dialog id="dialog-profile" aria-labelledby="dialog-title"
-            class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
-            <el-dialog-backdrop
-                class="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
-
-            <div tabindex="0"
-                class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
-                <el-dialog-panel id="dialog-profile-contenaire"
-                    class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
-                     <div class="flex flex-col justify-center  items-center p-6 w-full border rounded-md bg-white">
+ <section id="dialog-profile" class="absolute bg-black/45 backdrop-blur-sm h-300 flex w-full flex-col items-center justify-start ">
+        <div class=" flex justify-center rounded-md mt-20  p-8">
+           <div class="flex flex-col justify-center  items-center p-6 w-110 border rounded-md bg-white">
                         <div class="flex justify-between  w-full">
                             <h3 class="font-black">Staff Profile</h3>
-                            <button command="close" commandfor="dialog-profile" id="btn-profile-X"><i
+                            <button  id="btn-profile-X"><i
                                     class="fa-solid fa-x"></i></button>
                         </div>
                      <div class="grid gap-2 w-full border-t ">
                             <div class="grid justify-center items-center gap-2">
                                 <div id="id-imagprofile" class="rounded-[50%] bg-cover  w-24 h-24"></div>
                                 <div class="grid">
-                                    <h2 id="name-profile">Sarah Johnson</h2>
-                                    <span id="speciality-profile">Receptionist</span>
+                                    <h2 id="name-profile"></h2>
+                                    <span id="speciality-profile"></span>
                                 </div>
                             </div>
                             <div class="grid gap-1">
                                 <div class="flex items-center"><i class="fa-regular fa-envelope"
-                                        style="color: #4d74d7;"></i><h3 id="email-profile"> sarah.johnson@company.com</h3></div>
-                                <div class="flex items-center"><i class="fa-solid fa-phone" style="color: #16871e;"></i>+<h3 id="mumder-profile">33 6 12 34 56 78</h3></div>
+                                        style="color: #4d74d7;"></i><h3 id="email-profile"></h3></div>
+                                <div class="flex items-center"><i class="fa-solid fa-phone" style="color: #16871e;"></i>+<h3 id="mumder-profile"></h3></div>
                                 <div class="flex items-center"><i class="fa-solid fa-location-pin fa-lg" style="color: #f83062;"></i>Unassigned
                                 </div>
                             </div>
@@ -287,14 +279,14 @@
                                 <div>
                                     <h2>Work Experience</h2>
                                 </div>
-                                <div class="grid gap-1">
+                                <div id="add-more-exper" class="grid gap-1">
 
                                   
                                     <div class="ml-5 border-l-3 border-t-3 border-gray-200">
                                         <div class="grid ml-3">
                                             <h3>Front Desk Coordinator</h3>
                                             <small>Tech Corp</small>
-                                            <small>2020-2023</small>
+                                            
                                         </div>
                                     </div>
 
@@ -305,11 +297,16 @@
                             </div>
 
                         </div>
-                    </div> 
-                </el-dialog-panel>
-            </div>
-        </dialog>
-    </el-dialog>
+                    </div>
+    </section>
+
+
+
+
+
+
+
+
 
     <!-- <<<<<<<<<<<<<<<<<<<<<<<<< modale3 listes >>>>>>>>>>>>>>>>>>>>>>>>> -->
     

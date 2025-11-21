@@ -60,12 +60,12 @@ document.forms["ajouter"].addEventListener("submit", (event) => {
     }
 
 
-    // for (let i = 0; i < form.skillsname.length; i++) {
-    //     staff.experiencetab.push({
-    //         name: form.skillsname[i].value,
-    //         role: form.skiilsrole[i].value
-    //     })
-    // }
+    for (let i = 0; i < form.skillsname.length; i++) {
+        staff.experiencetab.push({
+            name: form.skillsname[i].value,
+            role: form.skiilsrole[i].value
+        })
+    }
     console.log(22222222);
 
 
@@ -85,21 +85,20 @@ function saveStaffList(staff) {
     setLocatleStorege(listUnassigned);
 }
 
-
-
 function setLocatleStorege(listUnassigned) {
 
     localStorage.setItem('infolistunassigned', JSON.stringify(listUnassigned));
     checkLocaleStorege();
-
 }
 
 
 function checkLocaleStorege() {
     let listUnassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-    affichageunassigned(listUnassigneds);
+    if(listUnassigneds!=null){
+         affichageunassigned(listUnassigneds);
+    }
+   
 }
-
 checkLocaleStorege();
 
 
@@ -143,20 +142,20 @@ function validationFormulaire(form) {
         form.teleworker.style.borderColor = "green";
     }
 
-    // for (let i = 0; i < form.skillsname; i++) {
-    //     if (!nameregex.test(form.skillsname[i].value)) {
-    //         form.skillsname[i].style.borderColor = "red";
-    //         nonvalide = false;
-    //     } else {
-    //         form.skillsname[i].style.borderColor = "green";
-    //     }
-    //     if (!nameregex.test(form.skiilsrole[i].value)) {
-    //         form.skiilsrole[i].style.borderColor = "red";
-    //         nonvalide = false;
-    //     } else {
-    //         form.skiilsrole[i].style.borderColor = "green";
-    //     }
-    // }
+    for (let i = 0; i < form.skillsname; i++) {
+        if (!nameregex.test(form.skillsname[i].value)) {
+            form.skillsname[i].style.borderColor = "red";
+            nonvalide = false;
+        } else {
+            form.skillsname[i].style.borderColor = "green";
+        }
+        if (!nameregex.test(form.skiilsrole[i].value)) {
+            form.skiilsrole[i].style.borderColor = "red";
+            nonvalide = false;
+        } else {
+            form.skiilsrole[i].style.borderColor = "green";
+        }
+    }
 
 
     return nonvalide;
@@ -167,38 +166,71 @@ function affichageunassigned(membres) {
     let cardUnassigned = document.getElementById("card-staff-unassigned");
     cardUnassigned.innerHTML = ""
     mombers.forEach(elemt => {
-        cardUnassigned.innerHTML += ` <div id="info-profile" class="flex justify-between border-2 rounded-xl border-gray-300 p-1">
-                             <button emil="${elemt.emilstaff}" class"des-button" command="show-modal" commandfor="dialog-profile">
-                            <div class="flex">
-                            <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
-                            <div class="grid">
-                                <strong>${elemt.firstname}</strong>
-                                <small>${elemt.role}</small>
-                                </div>
-                                </button> 
-                                <button><i class="far fa-edit fa-lg"></i></button>
-                            </div>
+        cardUnassigned.innerHTML += ` <div id="info-profile" class=" border-2 rounded-xl border-gray-300 p-1">
+                                           <div emil="${elemt.emilstaff}" class="flex justify-between " >
+                                             <div class="flex showProfile">
+                                                  <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
+                                                  <div class="grid">
+                                                      <strong>${elemt.firstname}</strong>
+                                                      <small>${elemt.role}</small>
+                                                  </div>
+                                             </div> 
+                                            <button><i class="far fa-edit fa-lg"></i></button>
+                                         </div>
                             
-                        </div>`
+                                         </div>`
     })
+   
+}
+let modalProfile=document.getElementById("dialog-profile");
+modalProfile.style.display="none";
+
+// document.getElementById("showProfile").addEventListener("click",()=>{
+// modalProfile.style.display="block";
+// })
+document.getElementById("btn-profile-X").addEventListener("click",()=>{
+modalProfile.classList.remove("flex");
+
+})
+ eventbtn()
+function eventbtn(){
+            
+
+    let allbtn=document.getElementsByClassName(".showProfile");
+allbtn.forEach(element=>{
+
+    element.addEventListener("click", (event) => {
+        
+        console.log("event applique");
+        
+    detaillProfile(event.target.getAttribute("email"));
+    modalProfile.classList.add("flex");
+})})
 }
 
-document.querySelectorAll(".des-button").forEach(element=>{
-    element.addEventListener("click", event => {
-    detaillProfile(event.target.getAttribute("email"));
-})})
 
 function detaillProfile(email) {
     console.log(11111111);
 
     let listUnassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-
+    let addmoreexper= document.getElementById("add-more-exper");
     let staffs = listUnassigneds.find(s => s.emilstaff == email);
 
     document.getElementById("id-imagprofile").style.backgroundImage=`url(${staffs.urlphotos})`;
     document.getElementById("email-profile").textContent="rtrhrt";
     document.getElementById("mumder-profile").textContent="trhhhtht";
+    if(staffs.experiencetab.skillsname!=0){
+        staffs.experiencetab.forEach(skils=>{
 
+            addmoreexper.innerHTML+=` <div class="ml-5 border-l-3 border-t-3 border-gray-200">
+                                        <div class="grid ml-3">
+                                            <h3>${skils.name}</h3>
+                                            <small>${skils.role}</small> 
+                                        </div>
+                                    </div>`
+ 
+        })
+     }     
 
 }
 
