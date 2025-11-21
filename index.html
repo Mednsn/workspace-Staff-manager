@@ -50,8 +50,8 @@
                                 <h3 class="font-bold">Conference Room</h3>
                                 <span class="text-sm mb-3 ml-5">maximame 10 people</span>
                             </div>
-                            <button command="show-modal" commandfor="dialog-list" id="btn-plus-conference"
-                                class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                            <button id="conference" command="show-modal" commandfor="dialog-list" id="btn-plus-conference"
+                                class="zones rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
                                     style="color: #335c36;"></i></button>
                         </div>
                         <div id="zone1-ajoutant-people" class="grid ">
@@ -79,7 +79,7 @@
                                 <h3 class="font-bold">Reception</h3>
                                 <span class="text-sm mb-3 ml-5">maximame 2 people</span>
                             </div>
-                            <button class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                            <button id="reception" class="zones rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
                                     style="color: #335c36;"></i></button>
                         </div>
                         <div id="zone2-ajoutant-people">
@@ -99,7 +99,7 @@
                                 <h3 class="font-bold">Server Room</h3>
                                 <span class="text-sm mb-3 ml-5">maximame 3 people</span>
                             </div>
-                            <button class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                            <button id="server" class="zones rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
                                     style="color: #335c36;"></i></button>
                         </div>
                         <div id="zone3-ajoutant-people">
@@ -119,7 +119,7 @@
                                 <h3 class="font-bold">Security Room</h3>
                                 <span class="text-sm mb-3 ml-5">maximame 2 people</span>
                             </div>
-                            <button class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                            <button id="security" class="zones rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
                                     style="color: #335c36;"></i></button>
                         </div>
                         <div id="zone4-ajoutant-people">
@@ -139,7 +139,7 @@
                                 <h3 class="font-bold">Staff Room</h3>
                                 <span class="text-sm mb-3 ml-5">maximame 15 people</span>
                             </div>
-                            <button class="rounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                            <button id="staff" class="zones rounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
                                     style="color: #335c36;"></i></button>
                         </div>
                         <div id="zone5-ajoutant-people">
@@ -159,7 +159,7 @@
                                 <h3 class="font-bold">Archives Room</h3>
                                 <span class="text-sm mb-3 ml-5">maximame 3 people</span>
                             </div>
-                            <button class="rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
+                            <button id="archives" class="zones rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
                                     style="color: #335c36;"></i></button>
                         </div>
                         <div id="zone6-ajoutant-people">
@@ -319,48 +319,34 @@
 
 
     <!-- <<<<<<<<<<<<<<<<<<<<<<<<< modale3 listes >>>>>>>>>>>>>>>>>>>>>>>>> -->
-
-    <el-dialog>
-        <dialog id="dialog-list" aria-labelledby="dialog-title"
-            class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
-            <el-dialog-backdrop
-                class="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"></el-dialog-backdrop>
-
-            <div tabindex="0"
-                class="flex min-h-full items-end justify-center p-4 text-center focus:outline-none sm:items-center sm:p-0">
-                <el-dialog-panel
-                    class="relative transform overflow-hidden rounded-lg bg-gray-800 text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95">
-
-
-                    <div class="flex flex-col border justify-center items-center p-6 w-full rounded-md bg-white">
+    <section id="dialog-list"
+        class="hidden absolute bg-black/45 backdrop-blur-sm h-300  w-full flex-col items-center justify-start ">
+        <div class=" flex justify-center rounded-md mt-20  p-8">
+            
+                <div class="flex flex-col border justify-center items-center p-6 w-100 rounded-md bg-white">
                         <div class="flex justify-between w-full">
                             <h3 class="font-black">assigne to Conference</h3>
-                            <button command="close" commandfor="dialog-list" id="btn-list-X"><i
+                            <button id="btn-list-X"><i
                                     class="fa-solid fa-x"></i></button>
 
                         </div>
-                        <div class="grid gap-2  w-full border-t ">
+                        <div id="espace-card-ajoute" class="grid gap-2  w-full border-t ">
 
                             <!-- space s'ajoute en js  -->
-                            <div class="flex gap-2 border-2 mt-3 rounded-xl border-gray-300 p-1">
-                                <div id="imag-staff-unassined" class="rounded-[50%] bg-gray-300 h-14 w-14"></div>
+                            <!-- <div class="flex gap-2 border-2 mt-3 rounded-xl bg-blue-300 border-gray-300 p-1">
+                                <div id="imag-staff-unassined" class="rounded-[50%]  h-14 w-14"></div>
                                 <div class="grid">
                                     <strong>name fullname</strong>
                                     <small>speciality</small>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- space s'ajoute en js  -->
 
                         </div>
-                    </div>
-
-                </el-dialog-panel>
+                   
             </div>
-        </dialog>
-    </el-dialog>
-
-
+    </section>
 
 
 

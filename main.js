@@ -69,8 +69,6 @@ document.forms["ajouter"].addEventListener("submit", (event) => {
     }
 
 
-
-
     saveStaffList(staff);
     resetForme();
 })
@@ -97,6 +95,7 @@ function checkLocaleStorege() {
     let listUnassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
     if (listUnassigneds != null) {
         affichageunassigned(listUnassigneds);
+        eventprofiles()
     }
 
 }
@@ -171,13 +170,13 @@ function affichageunassigned(membres) {
         
         cardUnassigned.innerHTML += ` <div id="info-profile" class=" border-2 rounded-xl border-gray-300 p-1">
                                            <div class="flex justify-between " >
-                                             <div email="${elemt.emailStaff}"  class="flex showProfile">
+                                             <button email="${elemt.emailStaff}"  class="flex showProfile">
                                                   <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
                                                   <div class="grid">
                                                       <strong>${elemt.firstname}</strong>
                                                       <small>${elemt.role}</small>
                                                   </div>
-                                             </div> 
+                                             <button> 
                                             <button><i class="far fa-edit fa-lg"></i></button>
                                          </div>
                             
@@ -185,6 +184,8 @@ function affichageunassigned(membres) {
     })
 
 }
+
+
 let modalProfile = document.getElementById("dialog-profile");
 
 document.getElementById("btn-profile-X").addEventListener("click", () => {
@@ -192,8 +193,8 @@ document.getElementById("btn-profile-X").addEventListener("click", () => {
 
 
 })
-eventbtn()
-function eventbtn() {
+eventprofiles()
+function eventprofiles() {
 
 
     let allbtn = document.querySelectorAll(".showProfile");
@@ -247,12 +248,10 @@ function detaillProfile(email) {
                     </div>
 
                 </div>`
-  console.log(staff.experiencetab);
   
 }
 function cardexper(staffs) {
-console.log(staffs.experiencetab.length);
-   let card;
+   let card="";
     if (staffs.experiencetab.length != 0) {
         for (let i = 0; i < staffs.experiencetab.length; i++) {
             card+=` <div class="ml-5 border-l-3 border-t-3 border-gray-200">
@@ -267,17 +266,94 @@ console.log(staffs.experiencetab.length);
 }
 
 
+let modallistZones = document.getElementById("dialog-list");
+
+eventdesbuttonzones()
+function eventdesbuttonzones() {
+
+   let zones = document.querySelectorAll(".zones");
+// console.log(zones);
+    zones.forEach((zone)=>{ 
+    //   console.log(zone.getAttribute("id"));
+    zone.addEventListener("click",(event)=>{
+
+        let zoneName = event.currentTarget.getAttribute("id");
+
+        afficheListZone(zoneName);
+        
+        modallistZones.classList.replace("hidden", "block");
+
+  })
+})
+}
 
 
+function afficheListZone(id){
+    
+        if("conference"===id){
+            zoneConferance();
+        }
+         if("archives"===id){
+            zoneArchives();
+        }
+         if("staff"===id){
+            zoneStaff();
+        }
+         if("security"===id){
+            zoneSecurety();
+        }
+         if("server"===id){
+            zoneServer();
+        }
+         if("reception"===id){
+            zoneReception();
+        } 
+}
 
+function zoneConferance(){
+    let listUnassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+    affichageUnassignedZone(listUnassigneds);
+    
+}
 
+document.getElementById("btn-list-X").addEventListener("click",()=>{
+    modallistZones.classList.replace("block","hidden" );
+})
+function affichageUnassignedZone(membres) {
+    console.log(2222222);
+    
+    let cardUnassignedZone=document.getElementById("espace-card-ajoute");
+    let mombers = membres;
+    cardUnassignedZone.innerHTML = ""
+    mombers.forEach(elemt => {
+        
+        
+        cardUnassignedZone.innerHTML += `<div class="  flex justify-around items-center border-2 mt-3 rounded-xl bg-black/10 border-gray-300 p-1">
+                                <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
+                                <div class="grid items-center">
+                                    <strong>${elemt.firstname}</strong>
+                                    <small>${elemt.role}</small>
+                                </div>
+                                 <button email="${elemt.emailStaff}" class="buttonAssigned bg-slate-500"><i class="fa-solid fa-square-plus fa-2xl" style="color: #39c337;"></i></button>
+                            </div>`
+    })
 
-
-
-
-
-
-
+}
+eventBtnAssined()
+function eventBtnAssined(){
+  let AllBtnAssigned=document.querySelectorAll(".buttonAssigned");
+  console.log(AllBtnAssigned);
+  
+  AllBtnAssigned.forEach(assigne=>{
+    assigne.addEventListener("click",(event)=>{
+        let mombreAssigned = event.currentTarget.getAttribute("email");
+        console.log(event.Target);
+        console.log(mombreAssigned);
+        
+    })
+  
+})
+}
 
 
 
