@@ -106,7 +106,7 @@ function validationFormulaire(form) {
 
     let nonvalide = true;
     let urlregex = /https?:\/\/[a-z^\s]+/;
-    let nameregex = /^[a-zA-Z\s?]+$/;
+    let nameregex = /^[a-zA-Z-\(éçàè)\s?]+$/;
     let emilregex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let teleregex = /^[0-9]{10}$/;
 
@@ -321,27 +321,37 @@ document.getElementById("btn-list-X").addEventListener("click",()=>{
     modallistZones.classList.replace("block","hidden" );
 })
 
+function zoneArchives(){
+      let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+    let listArchive = Unassigneds.filter(o=>o.role!="Nettoyage")
+    affichageUnassignedZone(listArchive);
+}
+
+function zoneStaff(){
+      let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+    affichageUnassignedZone(Unassigneds);
+}
+
+function zoneSecurety(){
+    let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+    let listrSecurety = Unassigneds.filter(o=>o.role==="Agents de sécurité" || o.role==="Manager" || o.role==="Nettoyage")
+    affichageUnassignedZone(listrSecurety);  
+}
+
 function zoneConferance(){
     let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-    affichageUnassignedZone(Unassigneds);
-    
+    affichageUnassignedZone(Unassigneds);  
 }
 
 function zoneServer(){
-
 let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-  let listServer=Unassigneds.filter(o=>o.role==="techniciens IT");
-
-
-
-
+  let listServer=Unassigneds.filter(o=>o.role==="Techniciens IT" || o.role==="Manager" || o.role==="Nettoyage");
     affichageUnassignedZone(listServer);
 }
 
 function zoneReception(){
     let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-      let listrReceptions=Unassigneds.filter(o=>o.role==="receptionnistes");
-
+      let listrReceptions=Unassigneds.filter(o=>o.role==="Réceptionnistes" || o.role==="Manager" || o.role==="Nettoyage");
  affichageUnassignedZone(listrReceptions);
 }
 
@@ -417,25 +427,24 @@ function setLocatleStoregeZone(lists) {
 
 
 function checkLocaleStoregeZONE() {
-    console.log("*********test***********");
     
     let tabZone=["archives","conference","reception","server","security","staff"];
     for(let i=0;i<6;i++){
     let listEassigneds = JSON.parse(localStorage.getItem(tabZone[i]));
     if (listEassigneds != null) {
-        afficheAssignedZONE(listEassigneds);
-        // eventprofiles()
+        afficheAssignedZONE(listEassigneds,tabZone[i]);
+        
     }
    }
-    console.log("*********test***********");
+
 
 }
  checkLocaleStoregeZONE() 
     
 
-function  afficheAssignedZONE(listes){
+function  afficheAssignedZONE(listes,nameZones){
     console.log(listes);
-    let ZONE= document.querySelector("."+nameZone);
+    let ZONE= document.querySelector("."+nameZones);    
     ZONE.innerHTML="";
     listes.forEach(staff=>{
         ZONE.innerHTML+=`<div class="flex justify-between items-center p-1 border-2 mt-2 border-gray-400 rounded-xl">
@@ -446,14 +455,12 @@ function  afficheAssignedZONE(listes){
                                         <small>${staff.role}</small>
                                     </div>
                                 </div>
-                                <button class="rounded-[50%] bg-red-500 h-8 w-8 "><i class="fa-solid fa-x"></i></button>
+                                <button class="rounded-[50%] bg-red-500 h-8 w-8 closeAssigned"><i class="fa-solid fa-x"></i></button>
 
                             </div>`
     })
     
     console.log("rrrrrrrrrrrrrrrrrr");
-    
-    // console.log(ZONE);
     
 }
 
