@@ -1,4 +1,4 @@
-
+let nameZone;
 document.getElementById("annuler-formulaire").addEventListener("click", resetForme);
 function resetForme() {
     document.forms["ajouter"].reset();
@@ -75,17 +75,17 @@ document.forms["ajouter"].addEventListener("submit", (event) => {
 
 
 function saveStaffList(staff) {
-
+     
     let listUnassigned = JSON.parse(localStorage.getItem('infolistunassigned'));
     if (listUnassigned == null) {
-        listUnassigned = []
+        listUnassigned = [];
     }
     listUnassigned.push(staff);
     setLocatleStorege(listUnassigned);
+    
 }
 
 function setLocatleStorege(listUnassigned) {
-
     localStorage.setItem('infolistunassigned', JSON.stringify(listUnassigned));
     checkLocaleStorege();
 }
@@ -202,7 +202,7 @@ function eventprofiles() {
 
         element.addEventListener("click", (event) => {
             // console.log(event.target);
-            detaillProfile(event.target.getAttribute("email"));
+            detaillProfile(event.currentTarget.getAttribute("email"));
 
             modalProfile.classList.replace("hidden", "block");
         })
@@ -278,6 +278,7 @@ function eventdesbuttonzones() {
     zone.addEventListener("click",(event)=>{
 
         let zoneName = event.currentTarget.getAttribute("id");
+        // console.log(zoneName);
 
         afficheListZone(zoneName);
         
@@ -291,37 +292,62 @@ function eventdesbuttonzones() {
 function afficheListZone(id){
     
         if("conference"===id){
+            nameZone="conference";
             zoneConferance();
         }
          if("archives"===id){
+            nameZone="archives";
             zoneArchives();
         }
          if("staff"===id){
+            nameZone="staff";
             zoneStaff();
         }
          if("security"===id){
+            nameZone="security";
             zoneSecurety();
         }
          if("server"===id){
+            nameZone="server";
             zoneServer();
         }
          if("reception"===id){
+            nameZone="reception";
             zoneReception();
         } 
-}
-
-function zoneConferance(){
-    let listUnassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-    affichageUnassignedZone(listUnassigneds);
-    
 }
 
 document.getElementById("btn-list-X").addEventListener("click",()=>{
     modallistZones.classList.replace("block","hidden" );
 })
+
+function zoneConferance(){
+    let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+    affichageUnassignedZone(Unassigneds);
+    
+}
+
+function zoneServer(){
+
+let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+  let listServer=Unassigneds.filter(o=>o.role==="techniciens IT");
+
+
+
+
+    affichageUnassignedZone(listServer);
+}
+
+function zoneReception(){
+    let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+      let listrReceptions=Unassigneds.filter(o=>o.role==="receptionnistes");
+
+ affichageUnassignedZone(listrReceptions);
+}
+
+
 function affichageUnassignedZone(membres) {
     console.log(2222222);
-    
     let cardUnassignedZone=document.getElementById("espace-card-ajoute");
     let mombers = membres;
     cardUnassignedZone.innerHTML = ""
@@ -337,24 +363,103 @@ function affichageUnassignedZone(membres) {
                                  <button email="${elemt.emailStaff}" class="buttonAssigned bg-slate-500"><i class="fa-solid fa-square-plus fa-2xl" style="color: #39c337;"></i></button>
                             </div>`
     })
-
+eventBtnAssined(membres)
 }
-eventBtnAssined()
-function eventBtnAssined(){
+
+function eventBtnAssined(ArrayKey){
   let AllBtnAssigned=document.querySelectorAll(".buttonAssigned");
-  console.log(AllBtnAssigned);
+//   console.log(AllBtnAssigned);
   
   AllBtnAssigned.forEach(assigne=>{
     assigne.addEventListener("click",(event)=>{
         let mombreAssigned = event.currentTarget.getAttribute("email");
-        console.log(event.Target);
-        console.log(mombreAssigned);
+        // console.log(mombreAssigned);
         
-    })
-  
+             assignedInZone(mombreAssigned,ArrayKey);
+        
+    }) 
 })
 }
 
+function assignedInZone(mombreZone,listkey){
+    // console.log(listkey);  
+    let staff=listkey.find(o=>o.emailStaff===mombreZone);
+    let indexStaff=listkey.indexOf(staff);
+     ajouteAlisteZone(staff)
+    console.log(indexStaff);
+    
+    listkey.splice(indexStaff,1);
+    console.log(listkey);
+   
+
+    setLocatleStorege(listkey);
+    affichageUnassignedZone(listkey)
+}
+
+function ajouteAlisteZone(staff) {
+    let list = JSON.parse(localStorage.getItem(nameZone));
+    console.log(list);
+    
+    if (list == null) {
+        list = [];
+    }
+    list.push(staff);
+    console.log(list);
+        
+    setLocatleStoregeZone(list);   
+}
+
+function setLocatleStoregeZone(lists) {
+    console.log("11111111111111111");
+    localStorage.setItem(nameZone, JSON.stringify(lists));
+    checkLocaleStoregeZONE();
+}
+
+
+function checkLocaleStoregeZONE() {
+    console.log("*********test***********");
+    
+    let tabZone=["archives","conference","reception","server","security","staff"];
+    for(let i=0;i<6;i++){
+    let listEassigneds = JSON.parse(localStorage.getItem(tabZone[i]));
+    if (listEassigneds != null) {
+        afficheAssignedZONE(listEassigneds);
+        // eventprofiles()
+    }
+   }
+    console.log("*********test***********");
+
+}
+ checkLocaleStoregeZONE() 
+    
+
+function  afficheAssignedZONE(listes){
+    console.log(listes);
+    let ZONE= document.querySelector("."+nameZone);
+    ZONE.innerHTML="";
+    listes.forEach(staff=>{
+        ZONE.innerHTML+=`<div class="flex justify-between items-center p-1 border-2 mt-2 border-gray-400 rounded-xl">
+                                <div class="flex gap-2">
+                                    <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${staff.urlphotos})] h-14 w-14"></div>
+                                    <div class="grid">
+                                        <strong>${staff.firstname}</strong>
+                                        <small>${staff.role}</small>
+                                    </div>
+                                </div>
+                                <button class="rounded-[50%] bg-red-500 h-8 w-8 "><i class="fa-solid fa-x"></i></button>
+
+                            </div>`
+    })
+    
+    console.log("rrrrrrrrrrrrrrrrrr");
+    
+    // console.log(ZONE);
+    
+}
+
+// function renderassigned(){
+
+// }
 
 
 
@@ -369,3 +474,30 @@ function eventBtnAssined(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let cardassignedzones=` <div class="flex justify-between items-center p-1 border-2 mt-2 border-gray-400 rounded-xl">
+                                <div class="flex gap-2">
+                                    <div id="imag-staff-unassined" class="rounded-[50%] bg-gray-300 h-14 w-14"></div>
+                                    <div class="grid">
+                                        <strong>name fullname</strong>
+                                        <small>speciality</small>
+                                    </div>
+                                </div>
+                                <button class="rounded-[50%] bg-red-500 h-8 w-8 "><i class="fa-solid fa-x"></i></button>
+
+                            </div>`
