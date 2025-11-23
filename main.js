@@ -80,8 +80,10 @@ function saveStaffList(staff) {
     if (listUnassigned == null) {
         listUnassigned = [];
     }
-    listUnassigned.push(staff);
-    setLocatleStorege(listUnassigned);
+    if (staff != null) {
+        listUnassigned.push(staff);
+        setLocatleStorege(listUnassigned);
+    }
 
 }
 
@@ -162,11 +164,12 @@ function validationFormulaire(form) {
 }
 
 function affichageunassigned(membres) {
-    let mombers = membres;
+    console.log(membres);
+
     let cardUnassigned = document.getElementById("card-staff-unassigned");
     cardUnassigned.innerHTML = ""
-    mombers.forEach(elemt => {
-        // console.log(elemt.emailStaff);
+    membres.forEach(elemt => {
+        console.log(elemt.emailStaff);
 
         cardUnassigned.innerHTML += ` <div id="info-profile" class=" border-2 rounded-xl border-gray-300 p-1">
                                            <div class="flex justify-between " >
@@ -179,7 +182,7 @@ function affichageunassigned(membres) {
                                              <button> 
                                             <button><i class="far fa-edit fa-lg"></i></button>
                                          </div>
-                            
+                                         
                                          </div>`
     })
 
@@ -189,7 +192,7 @@ function affichageunassigned(membres) {
 let modalProfile = document.getElementById("dialog-profile");
 
 document.getElementById("btn-profile-X").addEventListener("click", () => {
-    modalProfile.classList.replace("block", "hidden");
+    modalProfile.classList.replace("flex", "hidden");
 
 
 })
@@ -204,7 +207,7 @@ function eventprofiles() {
             // console.log(event.target);
             detaillProfile(event.currentTarget.getAttribute("email"));
 
-            modalProfile.classList.replace("hidden", "block");
+            modalProfile.classList.replace("hidden", "flex");
         })
     })
 }
@@ -216,38 +219,38 @@ function detaillProfile(email) {
     let staff = listUnassigneds.find(s => s.emailStaff === email);
 
 
-    addinfos.innerHTML = `<div class="grid gap-2 w-full border-t ">
-                    <div class="grid justify-center items-center gap-2">
-                        <div id="id-imagprofile" class="rounded-[50%] bg-cover bg-[url(${staff.urlphotos})]  w-24 h-24"></div>
-                        <div class="grid">
-                            <h2 id="name-profile">${staff.firstname}</h2>
+    addinfos.innerHTML = `<div class="grid gap-2 bg-black/10 p-2 rounded-sm w-full border-t ">
+    <div class="grid justify-center items-center gap-2">
+    <div id="id-imagprofile" class="rounded-[50%] bg-cover bg-[url(${staff.urlphotos})]  w-24 h-24"></div>
+    <div class="grid">
+    <h2 id="name-profile">${staff.firstname}</h2>
                             <span id="speciality-profile">${staff.role}</span>
-                        </div>
-                    </div>
-                    <div class="grid gap-1">
-                        <div class="flex items-center"><i class="fa-regular fa-envelope" style="color: #4d74d7;">${staff.emailStaff}</i>
+                            </div>
+                            </div>
+                            <div class="grid gap-1">
+                            <div class="flex items-center"><i class="fa-regular fa-envelope" style="color: #4d74d7;">${staff.emailStaff}</i>
                             <h3 id="email-profile"></h3>
-                        </div>
+                            </div>
                         <div class="flex items-center"><i class="fa-solid fa-phone" style="color: #16871e;"></i>+${staff.telephone}<h3
-                                id="mumder-profile"></h3>
+                        id="mumder-profile"></h3>
                         </div>
                         <div class="flex items-center"><i class="fa-solid fa-location-pin fa-lg"
-                                style="color: #f83062;"></i>Unassigned
+                        style="color: #f83062;"></i>Unassigned
                         </div>
-                    </div>
-
-                    <div class="grid gap-1">
-
+                        </div>
+                        
+                        <div class="grid gap-1">
+                        
                         <div>
-                            <h2>Work Experience</h2>
+                        <h2>Work Experience</h2>
                         </div>
                         <div id="add-more-exper" class="grid gap-1">
-                             ${cardexper(staff)}
+                        ${cardexper(staff)}
                         </div>
-
-                    </div>
-
-                </div>`
+                        
+                        </div>
+                        
+                        </div>`
 
 }
 function cardexper(staffs) {
@@ -256,11 +259,11 @@ function cardexper(staffs) {
         for (let i = 0; i < staffs.experiencetab.length; i++) {
             card += ` <div class="ml-5 border-l-3 border-t-3 border-gray-200">
                                 <div class="grid ml-3">
-                                    <h3>${staffs.experiencetab[i].name}</h3>
-                                    <small>${staffs.experiencetab[i].role}</small>
-
+                                <h3>${staffs.experiencetab[i].name}</h3>
+                                <small>${staffs.experiencetab[i].role}</small>
+                                
                                 </div>
-                            </div>`
+                                </div>`
         }
     } return card;
 }
@@ -278,11 +281,11 @@ function eventdesbuttonzones() {
         zone.addEventListener("click", (event) => {
 
             let zoneName = event.currentTarget.getAttribute("id");
-            // console.log(zoneName);
+            console.log(zoneName);
 
             afficheListZone(zoneName);
 
-            modallistZones.classList.replace("hidden", "block");
+            modallistZones.classList.replace("hidden", "flex");
 
         })
     })
@@ -318,7 +321,7 @@ function afficheListZone(id) {
 }
 
 document.getElementById("btn-list-X").addEventListener("click", () => {
-    modallistZones.classList.replace("block", "hidden");
+    modallistZones.classList.replace("flex", "hidden");
 })
 
 function zoneArchives() {
@@ -361,6 +364,7 @@ function affichageUnassignedZone(membres) {
     let cardUnassignedZone = document.getElementById("espace-card-ajoute");
     cardUnassignedZone.innerHTML = ""
     membres.forEach(elemt => {
+
         cardUnassignedZone.innerHTML += `<div class="  flex justify-around items-center border-2 mt-3 rounded-xl bg-black/10 border-gray-300 p-1">
         <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
         <div class="grid items-center">
@@ -370,7 +374,9 @@ function affichageUnassignedZone(membres) {
         <button email="${elemt.emailStaff}" class="buttonAssigned bg-slate-500"><i class="fa-solid fa-square-plus fa-2xl" style="color: #39c337;"></i></button>
         </div>`
     })
-    eventBtnAssined(membres)
+    eventBtnAssined(membres);
+    eventBTNsuppritionDansZone();
+
 }
 
 function eventBtnAssined(ArrayKey) {
@@ -394,7 +400,7 @@ function assignedInZone(mombreZone, listkey) {
     let indexStaff = listkey.indexOf(staff);
     let getLOcalstoregeList = JSON.parse(localStorage.getItem(nameZone));
 
-    if(!verifiertailleZone(getLOcalstoregeList)){
+    if (!verifiertailleZone(getLOcalstoregeList)) {
         return;
     }
 
@@ -416,49 +422,49 @@ function ajouteAlisteZone(staff, list) {
         list = [];
     }
     list.push(staff);
-    console.log(list);
-
     setLocatleStoregeZone(list);
+
 }
 
 function verifiertailleZone(liste) {
     console.log("******** marche bien******");
     let errorReturn = true;
-
-    if (nameZone === "reception") {
-        if (liste.length >= 3) {
-            alert("zone est pleins !!");
-            errorReturn = false;
+    if (liste != null) {
+        if (nameZone === "reception") {
+            if (liste.length >= 3) {
+                alert("zone est pleins !!");
+                errorReturn = false;
+            }
         }
-    }
-    if (nameZone === "archives") {
-        if (liste.length >= 4) {
-            alert("zone est pleins !!");
-            errorReturn = false;
+        if (nameZone === "archives") {
+            if (liste.length >= 4) {
+                alert("zone est pleins !!");
+                errorReturn = false;
+            }
         }
-    }
-    if (nameZone === "server") {
-        if (liste.length >= 4) {
-            alert("zone est pleins !!");
-            errorReturn = false;
+        if (nameZone === "server") {
+            if (liste.length >= 4) {
+                alert("zone est pleins !!");
+                errorReturn = false;
+            }
         }
-    }
-    if (nameZone === "security") {
-        if (liste.length >= 5) {
-            alert("zone est pleins !!");
-            errorReturn = false;
+        if (nameZone === "security") {
+            if (liste.length >= 5) {
+                alert("zone est pleins !!");
+                errorReturn = false;
+            }
         }
-    }
-    if (nameZone === "conference") {
-        if (liste.length >= 10) {
-            alert("zone est pleins !!");
-            errorReturn = false;
+        if (nameZone === "conference") {
+            if (liste.length >= 10) {
+                alert("zone est pleins !!");
+                errorReturn = false;
+            }
         }
-    }
-    if (nameZone === "staff") {
-        if (liste.length >= 7) {
-            alert("zone est pleins !!");
-            errorReturn = false;
+        if (nameZone === "staff") {
+            if (liste.length >= 7) {
+                alert("zone est pleins !!");
+                errorReturn = false;
+            }
         }
     }
     return errorReturn;
@@ -471,12 +477,15 @@ function setLocatleStoregeZone(lists) {
     checkLocaleStoregeZONE();
 }
 
+function cardVide() {
+    return `<div class="h-30 mt-3 text-sm w-full flex justify-center items-center border-2 border-dashed rounded-xl "> No employees assigned</div>`;
+}
 let zone1 = document.getElementById("zone1-contenue");
 let zone2 = document.getElementById("zone2-contenue");
 let zone3 = document.getElementById("zone3-contenue");
 let zone4 = document.getElementById("zone4-contenue");
+
 function checkLocaleStoregeZONE() {
-    let k = 0;
     let tabZone = ["archives", "conference", "reception", "server", "security", "staff"];
     for (let i = 0; i < 6; i++) {
         let listEassigneds = JSON.parse(localStorage.getItem(tabZone[i]));
@@ -484,30 +493,78 @@ function checkLocaleStoregeZONE() {
         if (listEassigneds != null) {
             if (i == 2) {
                 zone1.style.background = "none";
+                if (listEassigneds.length == 0) {
+                    localStorage.removeItem(tabZone[i]);
+                   return checkLocaleStoregeZONE();
+                }
+
             };
             if (i == 0) {
                 zone2.style.background = "none";
+                if (listEassigneds.length == 0) {
+                     localStorage.removeItem(tabZone[i]);
+                   return checkLocaleStoregeZONE();
+                }
             };
             if (i == 3) {
                 zone3.style.background = "none";
+                if (listEassigneds.length == 0) {
+                     localStorage.removeItem(tabZone[i]);
+                   return checkLocaleStoregeZONE();
+                }
             };
             if (i == 4) {
                 zone4.style.background = "none";
+                if (listEassigneds.length == 0) {
+                     localStorage.removeItem(tabZone[i]);
+                   return checkLocaleStoregeZONE();
+                }
             };
+            if (i == 1) {
+                if (listEassigneds.length == 0) {
+                     localStorage.removeItem(tabZone[i]);
+                   return checkLocaleStoregeZONE();
+                }
+            };
+            if (i == 5) {
+
+                if (listEassigneds.length == 0) {
+                   localStorage.removeItem(tabZone[i]);
+                   return checkLocaleStoregeZONE();
+                }
+            };
+
 
             afficheAssignedZONE(listEassigneds, tabZone[i]);
         } else {
-            if (i == 2) {
-                zone1.style.background = "PeachPuff";
-            };
+            if (listEassigneds == null)
+                if (i == 2) {
+                    zone1.style.background = "PeachPuff";
+                    document.querySelector(".zoneRAddition").innerHTML = cardVide();
+                };
             if (i == 0) {
                 zone2.style.background = "PeachPuff";
+                document.querySelector(".zoneArAddition").innerHTML = cardVide();
             };
             if (i == 3) {
                 zone3.style.background = "PeachPuff";
+                document.querySelector(".zoneSvAddition").innerHTML = cardVide();
+
             };
             if (i == 4) {
                 zone4.style.background = "PeachPuff";
+                document.querySelector(".zoneSecAddition").innerHTML = cardVide();
+
+            };
+            if (i == 1) {
+                zone4.style.background = "PeachPuff";
+                document.querySelector(".zoneCAddition").innerHTML = cardVide();
+
+            };
+            if (i == 5) {
+                zone4.style.background = "PeachPuff";
+                document.querySelector(".zoneStfAddition").innerHTML = cardVide();
+
             };
 
         };
@@ -517,14 +574,12 @@ checkLocaleStoregeZONE()
 
 
 function afficheAssignedZONE(listes, nameZones) {
-    console.log(listes);
-
     let ZONE = document.querySelector("." + nameZones);
     ZONE.innerHTML = "";
     listes.forEach(staff => {
-        ZONE.innerHTML += `<div class="flex justify-between items-center p-1 border-2 mt-2 border-gray-400 rounded-xl">
+        ZONE.innerHTML += `<div class="flex justify-between items-center p-1 border-2 bg-black/30 mt-2 border-gray-400 rounded-xl">
                                 <div class="flex gap-2">
-                                    <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${staff.urlphotos})] h-14 w-14"></div>
+                                    <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${staff.urlphotos})] bg-cover h-14 w-14"></div>
                                     <div class="grid">
                                         <strong>${staff.firstname}</strong>
                                         <small>${staff.role}</small>
@@ -534,28 +589,40 @@ function afficheAssignedZONE(listes, nameZones) {
 
                             </div>`
     })
-    console.log("rrrrrrrrrrrrrrrrrr");
-
 }
-eventBTNsuppritionDansZone()
-function eventBTNsuppritionDansZone(){
-let AllBTNSupprimer=document.querySelectorAll(".closeAssigned");
-AllBTNSupprimer.forEach(suppremer=>{
-    suppremer.addEventListener("click",(event)=>{
-        let eventsup=event.currentTarget.getAttribute("email");
-        suppremerDansZone(eventsup);
+eventBTNsuppritionDansZone();
+function eventBTNsuppritionDansZone() {
+    console.log("good");
+    let AllBTNSupprimer = document.querySelectorAll(".closeAssigned");
+    AllBTNSupprimer.forEach(suppremer => {
+        suppremer.addEventListener("click", (event) => {
+            let eventsup = event.currentTarget.getAttribute("email");
+            console.log(eventsup);
+            suppremerDansZone(eventsup);
+        })
     })
-})
 }
-function suppremerDansZone(eventsupr){
+function suppremerDansZone(eventsupr) {
     let AllZone = ["archives", "conference", "reception", "server", "security", "staff"];
     for (let i = 0; i < 6; i++) {
         let list = JSON.parse(localStorage.getItem(AllZone[i]));
-        console.log(list);
-        let staff=list.find(o=>o.emailStaff===eventsupr);
-        let indexStf=list.indexOf(staff);
-        saveStaffList(staff) ;
-        list.splice(indexStf,1);       
+        if (list != null) {
+            console.log(list);
+            let staff = list.find(o => o.emailStaff === eventsupr);
+            let indexStf = list.indexOf(staff);
+            saveStaffList(staff);
+            list.splice(indexStf, 1);
+            console.log(list);
+            localStorage.setItem(AllZone[i], JSON.stringify(list));
+            checkLocaleStoregeZONE();
+            eventBTNsuppritionDansZone();
+        }
     }
 }
+
+
+
+
+
+
 
