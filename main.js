@@ -27,28 +27,27 @@ let spaceEX = document.getElementById("pluus-experiences");
 btnAjouterEX.addEventListener("click", function () {
     let cardExperience = `<div class="grid experience-count gap-2 bg-white border p-2 rounded-md mt-3">
                                 <div class="grid ">
-                                    <label for="">nom :</label>
-                                    <input type="text" name="skillsname" id="skillsname" class="bg-gray-200 h-7 border rounded-sm skillsname">
+                                    <label>nom :</label>
+                                    <input type="text" name="skillsname" class="bg-gray-200 h-7 border-2 rounded-sm skillsname">
                                 </div>
                                 <div class="grid ">
-                                    <label for="">role:</label>
-                                    <input type="text" id="skiilsrole" name="skiilsrole" class="bg-gray-200 h-7 border rounded-sm skiilsrole">
+                                    <label>role:</label>
+                                    <input type="text"  name="skiilsrole" class="bg-gray-200 h-7 border-2 rounded-sm skiilsrole">
                                 </div>
                             </div>`;
     spaceEX.insertAdjacentHTML('beforeend', cardExperience)
 
 
-})
-
-// ::::::::::::::::: validation formulaire ::::::::::::::
-// let form = document.getElementById("form");
+}) 
 document.forms["ajouter"].addEventListener("submit", (event) => {
 
     event.preventDefault();
     let form = event.target;
     if (!validationFormulaire(form)) {
+        console.log("if enter");
         return;
     }
+        console.log("*****entrer ajouter***********");
 
     let staff = {
         urlphotos: form.urlphoto.value,
@@ -61,13 +60,12 @@ document.forms["ajouter"].addEventListener("submit", (event) => {
 
     let skillsname = document.querySelectorAll('.skillsname')
     let skiilsrole = document.querySelectorAll('.skiilsrole')
-    for (let i = 0; i < skillsname.length; i++) {
+    for (let i = 0; i <skillsname.length; i++) {
         staff.experiencetab.push({
             name: skillsname[i].value,
             role: skiilsrole[i].value
         })
     }
-
 
     saveStaffList(staff);
     resetForme();
@@ -144,9 +142,9 @@ function validationFormulaire(form) {
         form.teleworker.style.borderColor = "green";
     }
 
-    for (let i = 0; i < form.skillsname; i++) {
+    for (let i = 0; i <form.skillsname.length; i++) {
         if (!nameregex.test(form.skillsname[i].value)) {
-            form.skillsname[i].style.borderColor = "red";
+            form.skillsname[i].style.borderColor = "red";            
             nonvalide = false;
         } else {
             form.skillsname[i].style.borderColor = "green";
@@ -158,28 +156,22 @@ function validationFormulaire(form) {
             form.skiilsrole[i].style.borderColor = "green";
         }
     }
-
-
     return nonvalide;
 }
 
 function affichageunassigned(membres) {
-    console.log(membres);
-
     let cardUnassigned = document.getElementById("card-staff-unassigned");
     cardUnassigned.innerHTML = ""
     membres.forEach(elemt => {
-        console.log(elemt.emailStaff);
-
-        cardUnassigned.innerHTML += ` <div id="info-profile" class=" border-2 rounded-xl border-gray-300 p-1">
+        cardUnassigned.innerHTML += ` <div id="info-profile" class=" border-2 hover:shadow-xl/40 rounded-xl bg-black/5 border-gray-300 p-1">
                                            <div class="flex justify-between " >
-                                             <button email="${elemt.emailStaff}"  class="flex showProfile">
-                                                  <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
+                                             <button email="${elemt.emailStaff}" class="flex showProfile">
+                                                <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
                                                   <div class="grid">
                                                       <strong>${elemt.firstname}</strong>
                                                       <small>${elemt.role}</small>
                                                   </div>
-                                             <button> 
+                                             </button> 
                                             <button><i class="far fa-edit fa-lg"></i></button>
                                          </div>
                                          
@@ -219,47 +211,45 @@ function detaillProfile(email) {
     let staff = listUnassigneds.find(s => s.emailStaff === email);
 
 
-    addinfos.innerHTML = `<div class="grid gap-2 bg-black/10 p-2 rounded-sm w-full border-t ">
+    addinfos.innerHTML = `<div class="grid gap-2 bg-black/5 p-2 rounded-sm w-full border-t ">
     <div class="grid justify-center items-center gap-2">
-    <div id="id-imagprofile" class="rounded-[50%] bg-cover bg-[url(${staff.urlphotos})]  w-24 h-24"></div>
-    <div class="grid">
-    <h2 id="name-profile">${staff.firstname}</h2>
-                            <span id="speciality-profile">${staff.role}</span>
-                            </div>
-                            </div>
-                            <div class="grid gap-1">
-                            <div class="flex items-center"><i class="fa-regular fa-envelope" style="color: #4d74d7;">${staff.emailStaff}</i>
-                            <h3 id="email-profile"></h3>
-                            </div>
-                        <div class="flex items-center"><i class="fa-solid fa-phone" style="color: #16871e;"></i>+${staff.telephone}<h3
-                        id="mumder-profile"></h3>
-                        </div>
-                        <div class="flex items-center"><i class="fa-solid fa-location-pin fa-lg"
-                        style="color: #f83062;"></i>Unassigned
-                        </div>
-                        </div>
-                        
-                        <div class="grid gap-1">
-                        
-                        <div>
-                        <h2>Work Experience</h2>
-                        </div>
-                        <div id="add-more-exper" class="grid gap-1">
-                        ${cardexper(staff)}
-                        </div>
-                        
-                        </div>
-                        
-                        </div>`
+        <div id="id-imagprofile" class="rounded-[50%] bg-cover bg-[url(${staff.urlphotos})]  w-24 h-24"></div>
+        <div class="grid justify-center items-center">
+            <h2 id="name-profile" class="font-bold">${staff.firstname}</h2>
+            <span id="speciality-profile" class="font-serif">${staff.role}</span>
+        </div>
+    </div>
+    <div class="grid bg-slate-300 rounded-sm p-3 gap-2">
+        <div class="flex items-center"><i class="fa-regular fa-envelope" style="color: #4d74d7;"></i>
+            <h3 id="email-profile" class="font-mono">${staff.emailStaff}</h3>
+        </div>
+        <div class="flex items-center"><i class="fa-solid fa-phone" style="color: #16871e;"></i>+<h3 id="mumder-profile" class="font-serif">${staff.telephone}</h3>
+        </div>
+        <div class="flex items-center"><i class="fa-solid fa-location-pin fa-lg" style="color: #d12b54;"></i>Unassigned
+        </div>
+    </div>
+
+    <div class="grid bg-slate-300 p-7 rounded-sm  gap-1">
+
+        <div>
+            <h2 class="font-serif text-xl">Work Experience:</h2>
+        </div>
+        <div id="add-more-exper" class="grid gap-1">
+            ${cardexper(staff)}
+        </div>
+
+    </div>
+
+</div>`
 
 }
 function cardexper(staffs) {
     let card = "";
     if (staffs.experiencetab.length != 0) {
-        for (let i = 0; i < staffs.experiencetab.length; i++) {
-            card += ` <div class="ml-5 border-l-3 border-t-3 border-gray-200">
+        for (let i = 0; i <staffs.experiencetab.length; i++) {
+            card += ` <div class="ml-5 border-l-3  bg-slate-100 border-gray-200">
                                 <div class="grid ml-3">
-                                <h3>${staffs.experiencetab[i].name}</h3>
+                                <h3 class="font-semibold">${staffs.experiencetab[i].name}</h3>
                                 <small>${staffs.experiencetab[i].role}</small>
                                 
                                 </div>
@@ -366,7 +356,7 @@ function affichageUnassignedZone(membres) {
     membres.forEach(elemt => {
 
         cardUnassignedZone.innerHTML += `<div class="  flex justify-around items-center border-2 mt-3 rounded-xl bg-black/10 border-gray-300 p-1">
-        <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
+        <div class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
         <div class="grid items-center">
         <strong>${elemt.firstname}</strong>
         <small>${elemt.role}</small>
@@ -487,7 +477,7 @@ let zone4 = document.getElementById("zone4-contenue");
 
 function checkLocaleStoregeZONE() {
     let tabZone = ["archives", "conference", "reception", "server", "security", "staff"];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i <6; i++) {
         let listEassigneds = JSON.parse(localStorage.getItem(tabZone[i]));
         console.log(listEassigneds);
         if (listEassigneds != null) {
@@ -495,42 +485,42 @@ function checkLocaleStoregeZONE() {
                 zone1.style.background = "none";
                 if (listEassigneds.length == 0) {
                     localStorage.removeItem(tabZone[i]);
-                   return checkLocaleStoregeZONE();
+                    return checkLocaleStoregeZONE();
                 }
 
             };
             if (i == 0) {
                 zone2.style.background = "none";
                 if (listEassigneds.length == 0) {
-                     localStorage.removeItem(tabZone[i]);
-                   return checkLocaleStoregeZONE();
+                    localStorage.removeItem(tabZone[i]);
+                    return checkLocaleStoregeZONE();
                 }
             };
             if (i == 3) {
                 zone3.style.background = "none";
                 if (listEassigneds.length == 0) {
-                     localStorage.removeItem(tabZone[i]);
-                   return checkLocaleStoregeZONE();
+                    localStorage.removeItem(tabZone[i]);
+                    return checkLocaleStoregeZONE();
                 }
             };
             if (i == 4) {
-                zone4.style.background = "none";
+               zone4.style.background = "none";
                 if (listEassigneds.length == 0) {
-                     localStorage.removeItem(tabZone[i]);
-                   return checkLocaleStoregeZONE();
+                    localStorage.removeItem(tabZone[i]);
+                    return checkLocaleStoregeZONE();
                 }
             };
             if (i == 1) {
                 if (listEassigneds.length == 0) {
-                     localStorage.removeItem(tabZone[i]);
-                   return checkLocaleStoregeZONE();
+                    localStorage.removeItem(tabZone[i]);
+                    return checkLocaleStoregeZONE();
                 }
             };
             if (i == 5) {
 
                 if (listEassigneds.length == 0) {
-                   localStorage.removeItem(tabZone[i]);
-                   return checkLocaleStoregeZONE();
+                    localStorage.removeItem(tabZone[i]);
+                    return checkLocaleStoregeZONE();
                 }
             };
 
@@ -562,7 +552,7 @@ function checkLocaleStoregeZONE() {
 
             };
             if (i == 5) {
-                zone4.style.background = "PeachPuff";
+                
                 document.querySelector(".zoneStfAddition").innerHTML = cardVide();
 
             };
@@ -572,14 +562,13 @@ function checkLocaleStoregeZONE() {
 }
 checkLocaleStoregeZONE()
 
-
 function afficheAssignedZONE(listes, nameZones) {
     let ZONE = document.querySelector("." + nameZones);
     ZONE.innerHTML = "";
     listes.forEach(staff => {
         ZONE.innerHTML += `<div class="flex justify-between items-center p-1 border-2 bg-black/30 mt-2 border-gray-400 rounded-xl">
                                 <div class="flex gap-2">
-                                    <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${staff.urlphotos})] bg-cover h-14 w-14"></div>
+                                    <div class="rounded-[50%] bg-[url(${staff.urlphotos})] bg-cover h-14 w-14"></div>
                                     <div class="grid">
                                         <strong>${staff.firstname}</strong>
                                         <small>${staff.role}</small>
@@ -604,7 +593,7 @@ function eventBTNsuppritionDansZone() {
 }
 function suppremerDansZone(eventsupr) {
     let AllZone = ["archives", "conference", "reception", "server", "security", "staff"];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i <6; i++) {
         let list = JSON.parse(localStorage.getItem(AllZone[i]));
         if (list != null) {
             console.log(list);

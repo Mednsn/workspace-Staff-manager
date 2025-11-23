@@ -16,12 +16,11 @@
             <div id="contenaire-1" class="flex rounded-xl  w-full bg-white p-5 flex-col gap-2">
                 <h2 class="font-serif">Unassigned Staff</h2>
                 <button id="btn-add-staffs" command="show-modal" commandfor="dialog"
-                    class="bg-green-600 w-full p-1  rounded-md text-white text-sm">+ Add New
-                    Worker</button>
-
+                    class="bg-green-600 w-full p-1 hover:drop-shadow-xl/60 hover:bg-green-400 hover:font-bold rounded-md text-white text-sm">+
+                    Add New Worker</button>
                 <div class="bg-gray-200 w-full p-1  rounded-md">
                     <i class="fa-solid fa-filter fa-lg" style="color: #333a46;"></i>
-                    <select name="" id="" class="">
+                    <select>
                         <option value="">All Roles</option>
                         <option value="">Receptioniste</option>
                         <option value="">IT Technician</option>
@@ -43,27 +42,26 @@
             <div id="contenaire-2" class="flex rounded-xl  w-full bg-white p-5 flex-col gap-2 lg:col-span-3">
                 <h2 class="font-serif ">Floor Plan</h2>
                 <div id="card-zones" class="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
-                    <div class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                    <div class="flex hover:shadow-xl/40 rounded-xl w-full p-5 flex-col border-2 border-gray-300">
 
                         <div class="flex justify-between">
                             <div>
                                 <h3 class="font-bold">Conference Room</h3>
                                 <span class="text-sm mb-3 ml-5">maximame 10 people</span>
                             </div>
-                            <button id="conference" id="btn-plus-conference"
-                                class="zones rourounded-md bg-orange-400 h-8 w-8 "><i class="fa-solid fa-plus fa-lg"
-                                    style="color: #335c36;"></i></button>
+                            <button id="conference" class="zones rourounded-md bg-orange-400 h-8 w-8 "><i
+                                    class="fa-solid fa-plus fa-lg" style="color: #335c36;"></i></button>
                         </div>
-                        <div id="" class="zoneCAddition grid conference">
+                        <div class="zoneCAddition grid conference">
                             <!-- contenue des assigned staff -->
 
-                           
+
 
 
                             <!-- contenue des assigned staff -->
                         </div>
                     </div>
-                    <div id="zone1-contenue" class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                    <div id="zone1-contenue" class="flex hover:shadow-xl/40 rounded-xl w-full p-5 flex-col border-2 border-gray-300">
                         <div class="flex justify-between">
                             <div>
                                 <h3 class="font-bold">Reception</h3>
@@ -73,10 +71,10 @@
                                     class="fa-solid fa-plus fa-lg" style="color: #335c36;"></i></button>
                         </div>
                         <div id="frt" class="zoneRAddition reception">
-                           
+
                         </div>
                     </div>
-                    <div id="zone3-contenue" class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                    <div id="zone3-contenue" class="flex hover:shadow-xl/40 rounded-xl w-full p-5 flex-col border-2 border-gray-300">
                         <div class="flex justify-between">
                             <div>
                                 <h3 class="font-bold">Server Room</h3>
@@ -85,14 +83,9 @@
                             <button id="server" class="zones rourounded-md bg-orange-400 h-8 w-8 "><i
                                     class="fa-solid fa-plus fa-lg" style="color: #335c36;"></i></button>
                         </div>
-                        <div id="" class="zoneSvAddition server">
-
-                           
-
-
-                        </div>
+                        <div class="zoneSvAddition server"> </div>
                     </div>
-                    <div id="zone4-contenue" class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                    <div id="zone4-contenue" class="flex hover:shadow-xl/40 rounded-xl w-full p-5 flex-col border-2 border-gray-300">
                         <div class="flex justify-between">
                             <div>
                                 <h3 class="font-bold">Security Room</h3>
@@ -101,14 +94,10 @@
                             <button id="security" class="zones rourounded-md bg-orange-400 h-8 w-8 "><i
                                     class="fa-solid fa-plus fa-lg" style="color: #335c36;"></i></button>
                         </div>
-                        <div id="" class="zoneSecAddition security">
-
-
-                           
-
+                        <div class="zoneSecAddition security">
                         </div>
                     </div>
-                    <div class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                    <div class="flex rounded-xl w-full p-5 hover:shadow-xl/40 flex-col border-2 border-gray-300">
                         <div class="flex justify-between">
                             <div>
                                 <h3 class="font-bold">Staff Room</h3>
@@ -117,14 +106,14 @@
                             <button id="staff" class="zones rounded-md bg-orange-400 h-8 w-8 "><i
                                     class="fa-solid fa-plus fa-lg" style="color: #335c36;"></i></button>
                         </div>
-                        <div  class="staff zoneStfAddition">
+                        <div class="staff zoneStfAddition">
 
-                           
+
 
 
                         </div>
                     </div>
-                    <div id="zone2-contenue" class="flex rounded-xl w-full p-5 flex-col border-2 border-gray-300">
+                    <div id="zone2-contenue" class="flex hover:shadow-xl/40 rounded-xl w-full p-5 flex-col border-2 border-gray-300">
                         <div class="flex justify-between">
                             <div>
                                 <h3 class="font-bold">Archives Room</h3>
@@ -133,8 +122,8 @@
                             <button id="archives" class="zones rourounded-md bg-orange-400 h-8 w-8 "><i
                                     class="fa-solid fa-plus fa-lg" style="color: #335c36;"></i></button>
                         </div>
-                        <div  class="archives zoneArAddition">
-                           
+                        <div class="archives zoneArAddition">
+
                         </div>
                     </div>
 
@@ -160,10 +149,9 @@
                         </div>
                         <div class="grid w-full border-t ">
 
-                            <form action="" id="form" name="ajouter" class=" flex w-full flex-col gap-">
+                            <form id="form" name="ajouter" class=" flex w-full flex-col gap-">
                                 <div class="mt-2 flex bg-slate-100 w-full rounded-lg justify-center">
                                     <div id="iimg-staff" class="rounded-lg  bg-cover h-20 w-20 ">
-                                        <!-- img de staff -->
                                     </div>
                                 </div>
                                 <div class="grid ">
@@ -195,7 +183,7 @@
                                 </div>
                                 <div>
                                     <div class="flex justify-between">
-                                        <label for="">Expériences :</label>
+                                        <label>Expériences :</label>
                                         <button id="ajouter-exp" type="button"
                                             class="rounded-md bg-green-600 h-7 mt-2 w-16 text-white">Ajouter</button>
                                     </div>
@@ -208,7 +196,6 @@
                             </form>
                             <button id="annuler-formulaire" command="close" commandfor="dialog"
                                 class="rounded-md mt-1 border p-1 hover:text-white hover:bg-red-600">Annuler</button>
-
                         </div>
                     </div>
                 </el-dialog-panel>
@@ -217,9 +204,9 @@
     </el-dialog>
 
     <section id="dialog-profile"
-        class="hidden fixed bg-black/45 backdrop-blur-sm h-300  w-full flex-col items-center justify-start ">
-        <div class=" flex justify-center rounded-md mt-20  p-8">
-            <div class="flex flex-col  p-6 w-110 border rounded-md bg-white">
+        class="hidden fixed bg-black/45 backdrop-blur-sm h-screen  w-full p-10 items-center justify-center ">
+        <div class=" overflow-y-scroll max-h-130">
+            <div class="flex flex-col  p-6 w-110  border rounded-md bg-white">
                 <div class="flex justify-between  w-full">
                     <h3 class="font-black">Staff Profile</h3>
                     <button id="btn-profile-X"><i class="fa-solid fa-x"></i></button>
@@ -229,7 +216,7 @@
     </section>
     <section id="dialog-list"
         class="hidden fixed bg-black/45 backdrop-blur-sm h-screen w-full  p-10 items-center justify-center ">
- <div class="overflow-y-scroll max-h-130">
+        <div class="overflow-y-scroll max-h-130">
             <div class="flex flex-col border justify-center items-center p-6  w-100  bg-white rounded-md">
                 <div class="flex justify-between w-full">
                     <h3 class="font-black">assigne to :</h3>
@@ -237,9 +224,8 @@
                 </div>
                 <div id="espace-card-ajoute" class="grid gap-2 w-full border-t ">
                 </div>
-
             </div>
-            </div>
+        </div>
     </section>
     <script src="main.js"></script>
 </body>
