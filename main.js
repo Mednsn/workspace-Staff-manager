@@ -58,7 +58,7 @@ document.forms["ajouter"].addEventListener("submit", (event) => {
         telephone: form.teleworker.value,
         experiencetab: []
     }
-     
+
     let skillsname = document.querySelectorAll('.skillsname')
     let skiilsrole = document.querySelectorAll('.skiilsrole')
     for (let i = 0; i < skillsname.length; i++) {
@@ -75,14 +75,14 @@ document.forms["ajouter"].addEventListener("submit", (event) => {
 
 
 function saveStaffList(staff) {
-     
+
     let listUnassigned = JSON.parse(localStorage.getItem('infolistunassigned'));
     if (listUnassigned == null) {
         listUnassigned = [];
     }
     listUnassigned.push(staff);
     setLocatleStorege(listUnassigned);
-    
+
 }
 
 function setLocatleStorege(listUnassigned) {
@@ -167,7 +167,7 @@ function affichageunassigned(membres) {
     cardUnassigned.innerHTML = ""
     mombers.forEach(elemt => {
         // console.log(elemt.emailStaff);
-        
+
         cardUnassigned.innerHTML += ` <div id="info-profile" class=" border-2 rounded-xl border-gray-300 p-1">
                                            <div class="flex justify-between " >
                                              <button email="${elemt.emailStaff}"  class="flex showProfile">
@@ -214,8 +214,8 @@ function detaillProfile(email) {
     let listUnassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
     let addinfos = document.getElementById("contenaire-infospro");
     let staff = listUnassigneds.find(s => s.emailStaff === email);
-   
-    
+
+
     addinfos.innerHTML = `<div class="grid gap-2 w-full border-t ">
                     <div class="grid justify-center items-center gap-2">
                         <div id="id-imagprofile" class="rounded-[50%] bg-cover bg-[url(${staff.urlphotos})]  w-24 h-24"></div>
@@ -248,13 +248,13 @@ function detaillProfile(email) {
                     </div>
 
                 </div>`
-  
+
 }
 function cardexper(staffs) {
-   let card="";
+    let card = "";
     if (staffs.experiencetab.length != 0) {
         for (let i = 0; i < staffs.experiencetab.length; i++) {
-            card+=` <div class="ml-5 border-l-3 border-t-3 border-gray-200">
+            card += ` <div class="ml-5 border-l-3 border-t-3 border-gray-200">
                                 <div class="grid ml-3">
                                     <h3>${staffs.experiencetab[i].name}</h3>
                                     <small>${staffs.experiencetab[i].role}</small>
@@ -262,7 +262,7 @@ function cardexper(staffs) {
                                 </div>
                             </div>`
         }
-    }return card;
+    } return card;
 }
 
 
@@ -271,153 +271,199 @@ let modallistZones = document.getElementById("dialog-list");
 eventdesbuttonzones()
 function eventdesbuttonzones() {
 
-   let zones = document.querySelectorAll(".zones");
-// console.log(zones);
-    zones.forEach((zone)=>{ 
-    //   console.log(zone.getAttribute("id"));
-    zone.addEventListener("click",(event)=>{
+    let zones = document.querySelectorAll(".zones");
+    // console.log(zones);
+    zones.forEach((zone) => {
+        //   console.log(zone.getAttribute("id"));
+        zone.addEventListener("click", (event) => {
 
-        let zoneName = event.currentTarget.getAttribute("id");
-        // console.log(zoneName);
+            let zoneName = event.currentTarget.getAttribute("id");
+            // console.log(zoneName);
 
-        afficheListZone(zoneName);
-        
-        modallistZones.classList.replace("hidden", "block");
+            afficheListZone(zoneName);
 
-  })
-})
+            modallistZones.classList.replace("hidden", "block");
+
+        })
+    })
 }
 
 
-function afficheListZone(id){
-    
-        if("conference"===id){
-            nameZone="conference";
-            zoneConferance();
-        }
-         if("archives"===id){
-            nameZone="archives";
-            zoneArchives();
-        }
-         if("staff"===id){
-            nameZone="staff";
-            zoneStaff();
-        }
-         if("security"===id){
-            nameZone="security";
-            zoneSecurety();
-        }
-         if("server"===id){
-            nameZone="server";
-            zoneServer();
-        }
-         if("reception"===id){
-            nameZone="reception";
-            zoneReception();
-        } 
+function afficheListZone(id) {
+
+    if ("conference" === id) {
+        nameZone = "conference";
+        zoneConferance();
+    }
+    if ("archives" === id) {
+        nameZone = "archives";
+        zoneArchives();
+    }
+    if ("staff" === id) {
+        nameZone = "staff";
+        zoneStaff();
+    }
+    if ("security" === id) {
+        nameZone = "security";
+        zoneSecurety();
+    }
+    if ("server" === id) {
+        nameZone = "server";
+        zoneServer();
+    }
+    if ("reception" === id) {
+        nameZone = "reception";
+        zoneReception();
+    }
 }
 
-document.getElementById("btn-list-X").addEventListener("click",()=>{
-    modallistZones.classList.replace("block","hidden" );
+document.getElementById("btn-list-X").addEventListener("click", () => {
+    modallistZones.classList.replace("block", "hidden");
 })
 
-function zoneArchives(){
-      let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-    let listArchive = Unassigneds.filter(o=>o.role!="Nettoyage")
+function zoneArchives() {
+    let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+    let listArchive = Unassigneds.filter(o => o.role != "Nettoyage")
     affichageUnassignedZone(listArchive);
 }
 
-function zoneStaff(){
-      let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+function zoneStaff() {
+    let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
     affichageUnassignedZone(Unassigneds);
 }
 
-function zoneSecurety(){
+function zoneSecurety() {
     let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-    let listrSecurety = Unassigneds.filter(o=>o.role==="Agents de sécurité" || o.role==="Manager" || o.role==="Nettoyage")
-    affichageUnassignedZone(listrSecurety);  
+    let listrSecurety = Unassigneds.filter(o => o.role === "Agents de sécurité" || o.role === "Manager" || o.role === "Nettoyage")
+    affichageUnassignedZone(listrSecurety);
 }
 
-function zoneConferance(){
+function zoneConferance() {
     let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-    affichageUnassignedZone(Unassigneds);  
+    affichageUnassignedZone(Unassigneds);
 }
 
-function zoneServer(){
-let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-  let listServer=Unassigneds.filter(o=>o.role==="Techniciens IT" || o.role==="Manager" || o.role==="Nettoyage");
+function zoneServer() {
+    let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
+    let listServer = Unassigneds.filter(o => o.role === "Techniciens IT" || o.role === "Manager" || o.role === "Nettoyage");
     affichageUnassignedZone(listServer);
 }
 
-function zoneReception(){
+function zoneReception() {
     let Unassigneds = JSON.parse(localStorage.getItem('infolistunassigned'));
-      let listrReceptions=Unassigneds.filter(o=>o.role==="Réceptionnistes" || o.role==="Manager" || o.role==="Nettoyage");
- affichageUnassignedZone(listrReceptions);
+    let listrReceptions = Unassigneds.filter(o => o.role === "Réceptionnistes" || o.role === "Manager" || o.role === "Nettoyage");
+    affichageUnassignedZone(listrReceptions);
 }
 
 
 function affichageUnassignedZone(membres) {
     console.log(2222222);
-    let cardUnassignedZone=document.getElementById("espace-card-ajoute");
-    let mombers = membres;
+    let cardUnassignedZone = document.getElementById("espace-card-ajoute");
     cardUnassignedZone.innerHTML = ""
-    mombers.forEach(elemt => {
-        
-        
+    membres.forEach(elemt => {
         cardUnassignedZone.innerHTML += `<div class="  flex justify-around items-center border-2 mt-3 rounded-xl bg-black/10 border-gray-300 p-1">
-                                <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
-                                <div class="grid items-center">
-                                    <strong>${elemt.firstname}</strong>
-                                    <small>${elemt.role}</small>
-                                </div>
-                                 <button email="${elemt.emailStaff}" class="buttonAssigned bg-slate-500"><i class="fa-solid fa-square-plus fa-2xl" style="color: #39c337;"></i></button>
-                            </div>`
+        <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${elemt.urlphotos})] bg-cover h-14 w-14"></div>
+        <div class="grid items-center">
+        <strong>${elemt.firstname}</strong>
+        <small>${elemt.role}</small>
+        </div>
+        <button email="${elemt.emailStaff}" class="buttonAssigned bg-slate-500"><i class="fa-solid fa-square-plus fa-2xl" style="color: #39c337;"></i></button>
+        </div>`
     })
-eventBtnAssined(membres)
+    eventBtnAssined(membres)
 }
 
-function eventBtnAssined(ArrayKey){
-  let AllBtnAssigned=document.querySelectorAll(".buttonAssigned");
-//   console.log(AllBtnAssigned);
-  
-  AllBtnAssigned.forEach(assigne=>{
-    assigne.addEventListener("click",(event)=>{
-        let mombreAssigned = event.currentTarget.getAttribute("email");
-        // console.log(mombreAssigned);
-        
-             assignedInZone(mombreAssigned,ArrayKey);
-        
-    }) 
-})
+function eventBtnAssined(ArrayKey) {
+    let AllBtnAssigned = document.querySelectorAll(".buttonAssigned");
+    //   console.log(AllBtnAssigned);
+
+    AllBtnAssigned.forEach(assigne => {
+        assigne.addEventListener("click", (event) => {
+            let mombreAssigned = event.currentTarget.getAttribute("email");
+            // console.log(mombreAssigned);
+
+            assignedInZone(mombreAssigned, ArrayKey);
+
+        })
+    })
 }
 
-function assignedInZone(mombreZone,listkey){
+function assignedInZone(mombreZone, listkey) {
     // console.log(listkey);  
-    let staff=listkey.find(o=>o.emailStaff===mombreZone);
-    let indexStaff=listkey.indexOf(staff);
-     ajouteAlisteZone(staff)
+    let staff = listkey.find(o => o.emailStaff === mombreZone);
+    let indexStaff = listkey.indexOf(staff);
+    let getLOcalstoregeList = JSON.parse(localStorage.getItem(nameZone));
+
+    if(!verifiertailleZone(getLOcalstoregeList)){
+        return;
+    }
+
+    ajouteAlisteZone(staff, getLOcalstoregeList)
     console.log(indexStaff);
-    
-    listkey.splice(indexStaff,1);
+
+    listkey.splice(indexStaff, 1);
     console.log(listkey);
-   
+
 
     setLocatleStorege(listkey);
     affichageUnassignedZone(listkey)
 }
 
-function ajouteAlisteZone(staff) {
-    let list = JSON.parse(localStorage.getItem(nameZone));
+function ajouteAlisteZone(staff, list) {
     console.log(list);
-    
+
     if (list == null) {
         list = [];
     }
     list.push(staff);
     console.log(list);
-        
-    setLocatleStoregeZone(list);   
+
+    setLocatleStoregeZone(list);
 }
+
+function verifiertailleZone(liste) {
+    console.log("******** marche bien******");
+    let errorReturn = true;
+
+    if (nameZone === "reception") {
+        if (liste.length >= 3) {
+            alert("zone est pleins !!");
+            errorReturn = false;
+        }
+    }
+    if (nameZone === "archives") {
+        if (liste.length >= 4) {
+            alert("zone est pleins !!");
+            errorReturn = false;
+        }
+    }
+    if (nameZone === "server") {
+        if (liste.length >= 4) {
+            alert("zone est pleins !!");
+            errorReturn = false;
+        }
+    }
+    if (nameZone === "security") {
+        if (liste.length >= 5) {
+            alert("zone est pleins !!");
+            errorReturn = false;
+        }
+    }
+    if (nameZone === "conference") {
+        if (liste.length >= 10) {
+            alert("zone est pleins !!");
+            errorReturn = false;
+        }
+    }
+    if (nameZone === "staff") {
+        if (liste.length >= 7) {
+            alert("zone est pleins !!");
+            errorReturn = false;
+        }
+    }
+    return errorReturn;
+}
+
 
 function setLocatleStoregeZone(lists) {
     console.log("11111111111111111");
@@ -425,29 +471,58 @@ function setLocatleStoregeZone(lists) {
     checkLocaleStoregeZONE();
 }
 
-
+let zone1 = document.getElementById("zone1-contenue");
+let zone2 = document.getElementById("zone2-contenue");
+let zone3 = document.getElementById("zone3-contenue");
+let zone4 = document.getElementById("zone4-contenue");
 function checkLocaleStoregeZONE() {
-    
-    let tabZone=["archives","conference","reception","server","security","staff"];
-    for(let i=0;i<6;i++){
-    let listEassigneds = JSON.parse(localStorage.getItem(tabZone[i]));
-    if (listEassigneds != null) {
-        afficheAssignedZONE(listEassigneds,tabZone[i]);
-        
+    let k = 0;
+    let tabZone = ["archives", "conference", "reception", "server", "security", "staff"];
+    for (let i = 0; i < 6; i++) {
+        let listEassigneds = JSON.parse(localStorage.getItem(tabZone[i]));
+        console.log(listEassigneds);
+        if (listEassigneds != null) {
+            if (i == 2) {
+                zone1.style.background = "none";
+            };
+            if (i == 0) {
+                zone2.style.background = "none";
+            };
+            if (i == 3) {
+                zone3.style.background = "none";
+            };
+            if (i == 4) {
+                zone4.style.background = "none";
+            };
+
+            afficheAssignedZONE(listEassigneds, tabZone[i]);
+        } else {
+            if (i == 2) {
+                zone1.style.background = "PeachPuff";
+            };
+            if (i == 0) {
+                zone2.style.background = "PeachPuff";
+            };
+            if (i == 3) {
+                zone3.style.background = "PeachPuff";
+            };
+            if (i == 4) {
+                zone4.style.background = "PeachPuff";
+            };
+
+        };
     }
-   }
-
-
 }
- checkLocaleStoregeZONE() 
-    
+checkLocaleStoregeZONE()
 
-function  afficheAssignedZONE(listes,nameZones){
+
+function afficheAssignedZONE(listes, nameZones) {
     console.log(listes);
-    let ZONE= document.querySelector("."+nameZones);    
-    ZONE.innerHTML="";
-    listes.forEach(staff=>{
-        ZONE.innerHTML+=`<div class="flex justify-between items-center p-1 border-2 mt-2 border-gray-400 rounded-xl">
+
+    let ZONE = document.querySelector("." + nameZones);
+    ZONE.innerHTML = "";
+    listes.forEach(staff => {
+        ZONE.innerHTML += `<div class="flex justify-between items-center p-1 border-2 mt-2 border-gray-400 rounded-xl">
                                 <div class="flex gap-2">
                                     <div id="imag-staff-unassined" class="rounded-[50%] bg-[url(${staff.urlphotos})] h-14 w-14"></div>
                                     <div class="grid">
@@ -455,56 +530,32 @@ function  afficheAssignedZONE(listes,nameZones){
                                         <small>${staff.role}</small>
                                     </div>
                                 </div>
-                                <button class="rounded-[50%] bg-red-500 h-8 w-8 closeAssigned"><i class="fa-solid fa-x"></i></button>
+                                <button email="${staff.emailStaff}" class="rounded-[50%] bg-red-500 h-8 w-8 closeAssigned"><i class="fa-solid fa-x"></i></button>
 
                             </div>`
     })
-    
     console.log("rrrrrrrrrrrrrrrrrr");
-    
+
+}
+eventBTNsuppritionDansZone()
+function eventBTNsuppritionDansZone(){
+let AllBTNSupprimer=document.querySelectorAll(".closeAssigned");
+AllBTNSupprimer.forEach(suppremer=>{
+    suppremer.addEventListener("click",(event)=>{
+        let eventsup=event.currentTarget.getAttribute("email");
+        suppremerDansZone(eventsup);
+    })
+})
+}
+function suppremerDansZone(eventsupr){
+    let AllZone = ["archives", "conference", "reception", "server", "security", "staff"];
+    for (let i = 0; i < 6; i++) {
+        let list = JSON.parse(localStorage.getItem(AllZone[i]));
+        console.log(list);
+        let staff=list.find(o=>o.emailStaff===eventsupr);
+        let indexStf=list.indexOf(staff);
+        saveStaffList(staff) ;
+        list.splice(indexStf,1);       
+    }
 }
 
-// function renderassigned(){
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let cardassignedzones=` <div class="flex justify-between items-center p-1 border-2 mt-2 border-gray-400 rounded-xl">
-                                <div class="flex gap-2">
-                                    <div id="imag-staff-unassined" class="rounded-[50%] bg-gray-300 h-14 w-14"></div>
-                                    <div class="grid">
-                                        <strong>name fullname</strong>
-                                        <small>speciality</small>
-                                    </div>
-                                </div>
-                                <button class="rounded-[50%] bg-red-500 h-8 w-8 "><i class="fa-solid fa-x"></i></button>
-
-                            </div>`
